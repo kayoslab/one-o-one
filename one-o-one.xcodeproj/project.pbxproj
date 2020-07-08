@@ -13,6 +13,9 @@
 		6065471724B593B40050DBD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6065471524B593B40050DBD8 /* Main.storyboard */; };
 		6065471924B593B60050DBD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6065471824B593B60050DBD8 /* Assets.xcassets */; };
 		6065471C24B593B60050DBD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6065471A24B593B60050DBD8 /* LaunchScreen.storyboard */; };
+		6065472B24B593C80050DBD8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065472824B593C80050DBD8 /* Defaults.swift */; };
+		6065473224B595240050DBD8 /* StoreObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065472524B593C80050DBD8 /* StoreObserver.swift */; };
+		6065473324B5952F0050DBD8 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065472624B593C80050DBD8 /* StoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,10 @@
 		6065471824B593B60050DBD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6065471B24B593B60050DBD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6065471D24B593B60050DBD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6065472524B593C80050DBD8 /* StoreObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
+		6065472624B593C80050DBD8 /* StoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		6065472824B593C80050DBD8 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		6065473724B5A03F0050DBD8 /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +63,75 @@
 		6065470E24B593B40050DBD8 /* one-o-one */ = {
 			isa = PBXGroup;
 			children = (
+				6065472724B593C80050DBD8 /* Data */,
+				6065472D24B594830050DBD8 /* Lifecycle */,
+				6065473124B594E40050DBD8 /* Scenes */,
+				6065472F24B594A50050DBD8 /* Supporting Files */,
+			);
+			path = "one-o-one";
+			sourceTree = "<group>";
+		};
+		6065472324B593C80050DBD8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6065472424B593C80050DBD8 /* Purchase */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6065472424B593C80050DBD8 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				6065472524B593C80050DBD8 /* StoreObserver.swift */,
+				6065472624B593C80050DBD8 /* StoreManager.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
+		6065472724B593C80050DBD8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6065473024B594B90050DBD8 /* Extensions */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6065472D24B594830050DBD8 /* Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
 				6065470F24B593B40050DBD8 /* AppDelegate.swift */,
 				6065471124B593B40050DBD8 /* SceneDelegate.swift */,
-				6065471324B593B40050DBD8 /* ViewController.swift */,
-				6065471524B593B40050DBD8 /* Main.storyboard */,
+				6065472324B593C80050DBD8 /* Services */,
+			);
+			path = Lifecycle;
+			sourceTree = "<group>";
+		};
+		6065472F24B594A50050DBD8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				6065471824B593B60050DBD8 /* Assets.xcassets */,
 				6065471A24B593B60050DBD8 /* LaunchScreen.storyboard */,
 				6065471D24B593B60050DBD8 /* Info.plist */,
+				6065473724B5A03F0050DBD8 /* swiftlint.yml */,
 			);
-			path = "one-o-one";
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6065473024B594B90050DBD8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6065472824B593C80050DBD8 /* Defaults.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6065473124B594E40050DBD8 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				6065471324B593B40050DBD8 /* ViewController.swift */,
+				6065471524B593B40050DBD8 /* Main.storyboard */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +141,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6065472024B593B60050DBD8 /* Build configuration list for PBXNativeTarget "one-o-one" */;
 			buildPhases = (
+				6065473624B59EC30050DBD8 /* Templates */,
+				6065472C24B594620050DBD8 /* Swiftlint */,
 				6065470824B593B40050DBD8 /* Sources */,
 				6065470924B593B40050DBD8 /* Frameworks */,
 				6065470A24B593B40050DBD8 /* Resources */,
@@ -133,6 +202,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6065472C24B594620050DBD8 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nif [ -x \"$(command -v swiftlint)\" ]; then\n    swiftlint autocorrect --config swiftlint.yml\n    swiftlint --config swiftlint.yml\n    echo \"Hello world\"\nelse\n    echo \"An error occured. Swiftlint should be installed.\"\n    exit 1\nfi\n\n";
+		};
+		6065473624B59EC30050DBD8 /* Templates */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Templates;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nset -eo pipefail\nIFS=$'\\n\\t'\n\n# Remove all existing files\nrm -fR ~/Library/Developer/Xcode/Templates/File\\ Templates/VIP\\ Template\n\n# Create directory\nmkdir -p ~/Library/Developer/Xcode/Templates/File\\ Templates/\n\n# Copy all included templates to the templates directory\ncp -R ./Templates/VIP\\ Template ~/Library/Developer/Xcode/Templates/File\\ Templates/\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6065470824B593B40050DBD8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,7 +248,10 @@
 			files = (
 				6065471424B593B40050DBD8 /* ViewController.swift in Sources */,
 				6065471024B593B40050DBD8 /* AppDelegate.swift in Sources */,
+				6065472B24B593C80050DBD8 /* Defaults.swift in Sources */,
+				6065473324B5952F0050DBD8 /* StoreManager.swift in Sources */,
 				6065471224B593B40050DBD8 /* SceneDelegate.swift in Sources */,
+				6065473224B595240050DBD8 /* StoreObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
