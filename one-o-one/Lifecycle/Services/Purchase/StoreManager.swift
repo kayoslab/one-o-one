@@ -1,20 +1,23 @@
 import StoreKit
 import Foundation
 
-// swiftlint:disable duplicate_enum_cases
 /// An enumeration of all the types of products or purchases.
 enum SectionType: String, CustomStringConvertible {
-    #if os (macOS)
+
+    // swiftlint:disable duplicate_enum_cases
+#if os (macOS)
     case availableProducts = "Available Products"
     case invalidProductIdentifiers = "Invalid Product Identifiers"
     case purchased = "Purchased"
     case restored = "Restored"
-    #else
+#else
     case availableProducts = "AVAILABLE PRODUCTS"
     case invalidProductIdentifiers = "INVALID PRODUCT IDENTIFIERS"
     case purchased = "PURCHASED"
     case restored = "RESTORED"
-    #endif
+#endif
+    // swiftlint:enable duplicate_enum_cases
+
     case download = "DOWNLOAD"
     case originalTransaction = "ORIGINAL TRANSACTION"
     case productIdentifier = "PRODUCT IDENTIFIER"
@@ -25,7 +28,6 @@ enum SectionType: String, CustomStringConvertible {
         return self.rawValue
     }
 }
-// swiftlint:enable duplicate_enum_cases
 
 /// A structure that is used to represent a list of products or purchases.
 struct Section {

@@ -1,16 +1,10 @@
 import Foundation
 import StoreKit
 
-// MARK: - StoreManagerDelegate
-
-
-// MARK: - StoreObserverDelegate
-
 protocol StoreObserverDelegate: AnyObject {
     /// Tells the delegate that the restore operation was successful.
     func storeObserverRestoreDidSucceed()
 }
-
 
 class StoreObserver: NSObject {
 

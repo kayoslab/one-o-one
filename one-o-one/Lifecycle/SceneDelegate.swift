@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  one-o-one
-//
-//  Created by cr0ss on 08.07.20.
-//  Copyright © 2020 cr0ss. All rights reserved.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -60,6 +52,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // enough scene-specific state information to restore the scene back to
         // its current state.
     }
-
 
 }
