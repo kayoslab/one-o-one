@@ -1,7 +1,7 @@
 import StoreKit
 import Foundation
 
-
+// swiftlint:disable duplicate_enum_cases
 /// An enumeration of all the types of products or purchases.
 enum SectionType: String, CustomStringConvertible {
     #if os (macOS)
@@ -20,11 +20,12 @@ enum SectionType: String, CustomStringConvertible {
     case productIdentifier = "PRODUCT IDENTIFIER"
     case transactionDate = "TRANSACTION DATE"
     case transactionIdentifier = "TRANSACTION ID"
-    
+
     var description: String {
         return self.rawValue
     }
 }
+// swiftlint:enable duplicate_enum_cases
 
 /// A structure that is used to represent a list of products or purchases.
 struct Section {
@@ -39,53 +40,54 @@ protocol StoreManagerDelegate: AnyObject {
 }
 
 class StoreManager: NSObject {
-    
+
     static let shared: StoreManager = .init()
-    
+
     // MARK: - Properties
-    
+
     /// Keeps track of all valid products. These products are available for sale in the App Store.
-    fileprivate var availableProducts = [SKProduct]()
-    
+    private var availableProducts = [SKProduct]()
+
     /// Keeps track of all invalid product identifiers.
-    fileprivate var invalidProductIdentifiers = [String]()
-    
+    private var invalidProductIdentifiers = [String]()
+
     /// Keeps a strong reference to the product request.
-    fileprivate var productRequest: SKProductsRequest!
-    
-    /// Keeps track of all valid products (these products are available for sale in the App Store) and of all invalid product identifiers.
-    fileprivate var storeResponse = [Section]()
-    
+    private var productRequest: SKProductsRequest?
+
+    /// Keeps track of all valid products (these products are available for sale in the App Store)
+    /// and of all invalid product identifiers.
+    private var storeResponse = [Section]()
+
     weak var delegate: StoreManagerDelegate?
-        
-    private override init() {
+
+    override private init() {
         super.init()
     }
-    
+
     // MARK: - Request Product Information
-    
+
     /// Starts the product request with the specified identifiers.
     func startProductRequest(with identifiers: [String]) {
         fetchProducts(matchingIdentifiers: identifiers)
     }
-    
+
     /// Fetches information about your products from the App Store.
     /// - Tag: FetchProductInformation
     private func fetchProducts(matchingIdentifiers identifiers: [String]) {
         // Create a set for the product identifiers.
         let productIdentifiers = Set(identifiers)
-        
+
         // Initialize the product request with the above identifiers.
         productRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
-        productRequest.delegate = self
-        
+        productRequest?.delegate = self
+
         // Send the request to the App Store.
-        productRequest.start()
+        productRequest?.start()
     }
 }
 
 extension StoreManager {
-    
+
 //    /// - returns: Existing product's title matching the specified product identifier.
 //    private func title(
 //        matchingIdentifier identifier: String
@@ -114,7 +116,7 @@ extension StoreManager {
 
 /// Extends StoreManager to conform to SKProductsRequestDelegate.
 extension StoreManager: SKProductsRequestDelegate {
-    
+
     // Used to get the App Store's response to your request and notify your observer.
     // - Tag: ProductRequest
     func productsRequest(
@@ -124,19 +126,19 @@ extension StoreManager: SKProductsRequestDelegate {
         if !storeResponse.isEmpty {
             storeResponse.removeAll()
         }
-        
+
         // products contains products whose identifiers have been recognized
         // by the App Store. As such, they can be purchased.
         if !response.products.isEmpty {
             availableProducts = response.products
         }
-        
+
         // invalidProductIdentifiers contains all product identifiers not
         // recognized by the App Store.
         if !response.invalidProductIdentifiers.isEmpty {
             invalidProductIdentifiers = response.invalidProductIdentifiers
         }
-        
+
         if !availableProducts.isEmpty {
             storeResponse.append(
                 .init(
@@ -145,7 +147,7 @@ extension StoreManager: SKProductsRequestDelegate {
                 )
             )
         }
-        
+
         if !invalidProductIdentifiers.isEmpty {
             storeResponse.append(
                 .init(
@@ -154,10 +156,13 @@ extension StoreManager: SKProductsRequestDelegate {
                 )
             )
         }
-        
+
         if !storeResponse.isEmpty {
             DispatchQueue.main.async { [weak self] in
-                guard let storeResponse = self?.storeResponse else { return }
+                guard let storeResponse = self?.storeResponse else {
+                    return
+                }
+
                 self?.delegate?.storeManagerDidReceiveResponse(storeResponse)
             }
         }
@@ -171,7 +176,6 @@ extension StoreManager: SKRequestDelegate {
 
     // Called when the product request failed.
     func request(_ request: SKRequest, didFailWithError error: Error) {
-        
+
     }
 }
-

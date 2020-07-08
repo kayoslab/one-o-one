@@ -1,0 +1,3 @@
+[submodule "Templates"]
+	path = Templates
+	url = git@github.com:kayoslab/Templates.git

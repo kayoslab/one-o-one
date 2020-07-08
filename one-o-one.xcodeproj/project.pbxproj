@@ -30,6 +30,7 @@
 		6065472524B593C80050DBD8 /* StoreObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		6065472624B593C80050DBD8 /* StoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		6065472824B593C80050DBD8 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		6065473724B5A03F0050DBD8 /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +112,7 @@
 				6065471824B593B60050DBD8 /* Assets.xcassets */,
 				6065471A24B593B60050DBD8 /* LaunchScreen.storyboard */,
 				6065471D24B593B60050DBD8 /* Info.plist */,
+				6065473724B5A03F0050DBD8 /* swiftlint.yml */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -139,6 +141,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6065472024B593B60050DBD8 /* Build configuration list for PBXNativeTarget "one-o-one" */;
 			buildPhases = (
+				6065473624B59EC30050DBD8 /* Templates */,
 				6065472C24B594620050DBD8 /* Swiftlint */,
 				6065470824B593B40050DBD8 /* Sources */,
 				6065470924B593B40050DBD8 /* Frameworks */,
@@ -216,7 +219,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -x \"$(command -v swiftlint)\" ]; then\n    swiftlint autocorrect --config swiftlint.yml\n    swiftlint --config swiftlint.yml\n    echo \"Hello world\"\nelse\n    echo \"An error occured. Swiftlint should be installed.\"\n    exit 1\nfi\n\n";
+			shellScript = "#!/bin/bash\nif [ -x \"$(command -v swiftlint)\" ]; then\n    swiftlint autocorrect --config swiftlint.yml\n    swiftlint --config swiftlint.yml\n    echo \"Hello world\"\nelse\n    echo \"An error occured. Swiftlint should be installed.\"\n    exit 1\nfi\n\n";
+		};
+		6065473624B59EC30050DBD8 /* Templates */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Templates;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nset -eo pipefail\nIFS=$'\\n\\t'\n\n# Remove all existing files\nrm -fR ~/Library/Developer/Xcode/Templates/File\\ Templates/VIP\\ Template\n\n# Create directory\nmkdir -p ~/Library/Developer/Xcode/Templates/File\\ Templates/\n\n# Copy all included templates to the templates directory\ncp -R ./Templates/VIP\\ Template ~/Library/Developer/Xcode/Templates/File\\ Templates/\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
