@@ -43,8 +43,6 @@ protocol StoreManagerDelegate: AnyObject {
 
 class StoreManager: NSObject {
 
-    static let shared: StoreManager = .init()
-
     // MARK: - Properties
 
     /// Keeps track of all valid products. These products are available for sale in the App Store.
@@ -61,10 +59,6 @@ class StoreManager: NSObject {
     private var storeResponse = [Section]()
 
     weak var delegate: StoreManagerDelegate?
-
-    override private init() {
-        super.init()
-    }
 
     // MARK: - Request Product Information
 
@@ -88,32 +82,6 @@ class StoreManager: NSObject {
     }
 }
 
-extension StoreManager {
-
-//    /// - returns: Existing product's title matching the specified product identifier.
-//    private func title(
-//        matchingIdentifier identifier: String
-//    ) -> String? {
-//        guard !availableProducts.isEmpty else { return nil }
-//        
-//        // Search availableProducts for a product whose productIdentifier
-//        // property matches identifier. Return its localized title when found.
-//        let result = availableProducts.filter {
-//            $0.productIdentifier == identifier
-//        }
-//        
-//        return result.first?.localizedTitle
-//    }
-//    
-//    /// - returns: Existing product's title associated with the specified payment transaction.
-//    private func title(
-//        matchingPaymentTransaction transaction: SKPaymentTransaction
-//    ) -> String {
-//        let title = self.title(matchingIdentifier: transaction.payment.productIdentifier)
-//        return title ?? transaction.payment.productIdentifier
-//    }
-}
-
 // MARK: - SKProductsRequestDelegate
 
 /// Extends StoreManager to conform to SKProductsRequestDelegate.
@@ -133,12 +101,16 @@ extension StoreManager: SKProductsRequestDelegate {
         // by the App Store. As such, they can be purchased.
         if !response.products.isEmpty {
             availableProducts = response.products
+            print("Valid Items")
+            dump(availableProducts.map { $0.localizedTitle })
         }
 
         // invalidProductIdentifiers contains all product identifiers not
         // recognized by the App Store.
         if !response.invalidProductIdentifiers.isEmpty {
             invalidProductIdentifiers = response.invalidProductIdentifiers
+            print("Invalid Items")
+            dump(invalidProductIdentifiers)
         }
 
         if !availableProducts.isEmpty {
@@ -178,6 +150,6 @@ extension StoreManager: SKRequestDelegate {
 
     // Called when the product request failed.
     func request(_ request: SKRequest, didFailWithError error: Error) {
-
+        dump(error)
     }
 }

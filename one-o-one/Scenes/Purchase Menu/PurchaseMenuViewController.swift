@@ -9,12 +9,8 @@ protocol PurchaseMenuViewControllerOutput {
     /// The `PurchaseMenuViewController`'s view finished loading.
     func viewLoaded()
 
-    /// The user's input changed and therefore the model
-    /// needs an update (e.g. for validation).
-    ///
-    /// - Parameter viewModel: The model representing the
-    ///                    current state of the userinterface.
-    func viewContentUpdated(with viewModel: PurchaseMenuViewModel)
+    /// The user's has selected the close button.
+    func closeButtonSelected()
 }
 
 /**
@@ -45,6 +41,10 @@ final class PurchaseMenuViewController: UIViewController {
         super.viewDidLoad()
 
         output.viewLoaded()
+    }
+
+    @IBAction private func closeButtonTouched() {
+        output.closeButtonSelected()
     }
 }
 

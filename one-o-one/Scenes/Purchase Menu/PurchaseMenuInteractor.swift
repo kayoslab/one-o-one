@@ -6,13 +6,13 @@ import UIKit
  */
 protocol PurchaseMenuInteractorOutput {
 
-    /// Updates the view controller after the view is loaded.
-    func presentUpdateAfterLoading()
-
     /// Triggers an update with the new view model.
     ///
     /// - parameter viewModel: View model which will be applied. 
     func update(with viewModel: PurchaseMenuViewModel)
+
+    /// Triggers a close operation for the purchase menu.
+    func closePurchaseMenu()
 }
 
 /**
@@ -27,6 +27,7 @@ final class PurchaseMenuInteractor {
 
     private let output: PurchaseMenuInteractorOutput
     private let worker: PurchaseMenuWorkerInput
+    private var viewModel: PurchaseMenuViewModel
 
     // MARK: - Initializers
 
@@ -43,6 +44,7 @@ final class PurchaseMenuInteractor {
         output: PurchaseMenuInteractorOutput,
         worker: PurchaseMenuWorkerInput = PurchaseMenuWorker()
     ) {
+        self.viewModel = .init()
         self.output = output
         self.worker = worker
         self.worker.output = self
@@ -56,11 +58,15 @@ extension PurchaseMenuInteractor: PurchaseMenuViewControllerOutput {
     // MARK: - Business logic
 
     func viewLoaded() {
-        output.presentUpdateAfterLoading()
+        output.update(with: viewModel)
     }
 
     func viewContentUpdated(with viewModel: PurchaseMenuViewModel) {
         output.update(with: viewModel)
+    }
+
+    func closeButtonSelected() {
+        output.closePurchaseMenu()
     }
 }
 

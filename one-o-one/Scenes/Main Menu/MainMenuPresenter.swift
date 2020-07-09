@@ -44,12 +44,21 @@ extension MainMenuPresenter: MainMenuInteractorOutput {
 
     // MARK: - Presentation logic
 
-    func presentUpdateAfterLoading() {
-        let viewModel = MainMenuViewModel()
-        update(with: viewModel)
-    }
-
     func update(with viewModel: MainMenuViewModel) {
         output.update(with: viewModel)
+    }
+
+    /// Present the requested game to the user.
+    ///
+    /// - Parameter game: The game which was requested by the user.
+    func presentLevel(for game: Game) {
+        router.displayNewGameLevel(game: game)
+    }
+
+    /// Present the purchase menu for the requested game.
+    ///
+    /// - Parameter game: The game that the user tried to start.
+    func presentPurchase(for game: Game) {
+        router.displayPurchaseMenu(with: game)
     }
 }

@@ -9,12 +9,10 @@ protocol MainMenuViewControllerOutput {
     /// The `MainMenuViewController`'s view finished loading.
     func viewLoaded()
 
-    /// The user's input changed and therefore the model
-    /// needs an update (e.g. for validation).
+    /// A menu item was selected by the user.
     ///
-    /// - Parameter viewModel: The model representing the
-    ///                    current state of the userinterface.
-    func viewContentUpdated(with viewModel: MainMenuViewModel)
+    /// - Parameter with: The index of the selected menu item.
+    func menuItemSelected(with index: Int)
 }
 
 /**
@@ -25,6 +23,8 @@ final class MainMenuViewController: UIViewController {
 
     // swiftlint:disable:next implicitly_unwrapped_optional
     var output: MainMenuViewControllerOutput!
+
+    @IBOutlet private weak var stackView: UIStackView?
 
     // MARK: - Initializers
 
@@ -46,6 +46,26 @@ final class MainMenuViewController: UIViewController {
 
         output.viewLoaded()
     }
+
+    /// Reload the stack views entries based on the available game items.
+    /// This will automatically add the arranged subviews and request them
+    /// to update their view autonomously.
+    private func reloadData(with viewModel: MainMenuViewModel) {
+        guard let stackView = self.stackView else { return }
+
+        for index in 0..<viewModel.games.count {
+            let itemView: MenuItemView = .fromNib()
+            itemView.update(
+                with: .init(
+                    with: viewModel.games[index],
+                    index: index
+                )
+            )
+            itemView.delegate = self
+
+            stackView.addArrangedSubview(itemView)
+        }
+    }
 }
 
 // MARK: - MainMenuPresenterOutput
@@ -55,6 +75,13 @@ extension MainMenuViewController: MainMenuPresenterOutput {
     // MARK: - Display logic
 
     func update(with viewModel: MainMenuViewModel) {
+        reloadData(with: viewModel)
+    }
+}
 
+extension MainMenuViewController: MenuItemViewDelegate {
+
+    func didSelectMenuItem(with index: Int) {
+        output.menuItemSelected(with: index)
     }
 }

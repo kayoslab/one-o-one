@@ -2,7 +2,7 @@ import UIKit
 
 /// A UIView extension to make it easier working with nib and code layouts at the same time.
 public extension UIView {
-    
+
     /// Unarchives the contents of a nib file.
     ///
     /// - Returns: The top-level objects in the nib file.

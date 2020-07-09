@@ -8,6 +8,15 @@ protocol MainMenuWorkerInput: class {
 
     // swiftlint:disable:next implicitly_unwrapped_optional
     var output: MainMenuWorkerOutput! { get set }
+
+    /// Request if a game item needs to be purchased before it can be
+    /// shown to the user. This function will trigger a call of the
+    /// `didReceivePurchaseStatus` when the information was
+    /// retrieved from the `PurchaseManager`.
+    ///
+    /// - Parameter game: The game for which the purchase
+    ///                   status is required.
+    func requestPurchaseStatus(for game: Game)
 }
 
 /**
@@ -17,6 +26,13 @@ protocol MainMenuWorkerInput: class {
  */
 protocol MainMenuWorkerOutput: class {
 
+    /// The purchase status for a requested game was received from the
+    /// `PurchaseManager` and is passed along as payload.
+    ///
+    /// - Parameters:
+    ///   - game: The game that was requested.
+    ///   - purchased: The state of the purchase.
+    func didReceivePurchaseStatus(for game: Game, purchased: Bool)
 }
 
 /**
@@ -40,5 +56,12 @@ class MainMenuWorker: MainMenuWorkerInput {
         if let output = output {
             self.output = output
         }
+    }
+
+    func requestPurchaseStatus(for game: Game) {
+        output.didReceivePurchaseStatus(
+            for: game,
+            purchased: game.isPurchased
+        )
     }
 }

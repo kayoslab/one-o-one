@@ -44,12 +44,11 @@ extension PurchaseMenuPresenter: PurchaseMenuInteractorOutput {
 
     // MARK: - Presentation logic
 
-    func presentUpdateAfterLoading() {
-        let viewModel = PurchaseMenuViewModel()
-        update(with: viewModel)
-    }
-
     func update(with viewModel: PurchaseMenuViewModel) {
         output.update(with: viewModel)
+    }
+
+    func closePurchaseMenu() {
+        router.dismissPurchaseMenu()
     }
 }

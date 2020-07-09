@@ -7,6 +7,9 @@ protocol PurchaseMenuRouterProtocol: class {
 
     var viewController: PurchaseMenuViewController? { get }
 
+    /// Dismiss the currently displayed purchase menu with animation.
+    /// 
+    func dismissPurchaseMenu()
 }
 
 /**
@@ -31,5 +34,10 @@ final class PurchaseMenuRouter {
 // MARK: - PurchaseMenuRouterProtocol
 
 extension PurchaseMenuRouter: PurchaseMenuRouterProtocol {
-
+    func dismissPurchaseMenu() {
+        viewController?.dismiss(
+            animated: true,
+            completion: nil
+        )
+    }
 }

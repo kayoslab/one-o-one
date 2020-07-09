@@ -13,11 +13,20 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="OeA-GX-PoS"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="s5i-X7-BFo" appends="YES" id="eQO-OM-dPK"/>
+            </connections>
             <point key="canvasLocation" x="18.840579710144929" y="-63.616071428571423"/>
         </view>
+        <tapGestureRecognizer id="s5i-X7-BFo">
+            <connections>
+                <action selector="didTap:" destination="ub0-hh-3ze" id="dZL-IM-LPS"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

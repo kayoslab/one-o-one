@@ -1,14 +1,14 @@
 import UIKit
-import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    private let purchaseService: PurchaseServiceApplicationMainInteraction = PurchaseService.shared
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        SKPaymentQueue.default().add(StoreObserver.shared)
+        purchaseService.start()
         return true
     }
 
@@ -40,6 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func applicationWillTerminate(_ application: UIApplication) {
-        SKPaymentQueue.default().remove(StoreObserver.shared)
+        purchaseService.start()
     }
 }

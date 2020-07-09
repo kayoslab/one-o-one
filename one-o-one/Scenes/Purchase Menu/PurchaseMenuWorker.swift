@@ -41,4 +41,5 @@ class PurchaseMenuWorker: PurchaseMenuWorkerInput {
             self.output = output
         }
     }
+
 }

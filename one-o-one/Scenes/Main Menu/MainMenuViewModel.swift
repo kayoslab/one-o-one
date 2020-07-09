@@ -6,5 +6,5 @@ import UIKit
   The view model will contain Request, Response and ViewModel structs.
  */
 struct MainMenuViewModel {
-
+    var games: [Game] = Game.allCases
 }

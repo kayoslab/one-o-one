@@ -6,13 +6,20 @@ import UIKit
  */
 protocol MainMenuInteractorOutput {
 
-    /// Updates the view controller after the view is loaded.
-    func presentUpdateAfterLoading()
-
     /// Triggers an update with the new view model.
     ///
     /// - parameter viewModel: View model which will be applied. 
     func update(with viewModel: MainMenuViewModel)
+
+    /// Present the requested game level to the user.
+    ///
+    /// - Parameter game: The game which was requested by the user.
+    func presentLevel(for game: Game)
+
+    /// Present the purchase menu for the requested game.
+    ///
+    /// - Parameter game: The game that the user tried to start.
+    func presentPurchase(for game: Game)
 }
 
 /**
@@ -27,6 +34,7 @@ final class MainMenuInteractor {
 
     private let output: MainMenuInteractorOutput
     private let worker: MainMenuWorkerInput
+    private var viewModel: MainMenuViewModel
 
     // MARK: - Initializers
 
@@ -43,6 +51,7 @@ final class MainMenuInteractor {
         output: MainMenuInteractorOutput,
         worker: MainMenuWorkerInput = MainMenuWorker()
     ) {
+        self.viewModel = .init()
         self.output = output
         self.worker = worker
         self.worker.output = self
@@ -56,12 +65,23 @@ extension MainMenuInteractor: MainMenuViewControllerOutput {
     // MARK: - Business logic
 
     func viewLoaded() {
-        output.presentUpdateAfterLoading()
+        output.update(with: viewModel)
     }
 
-    func viewContentUpdated(with viewModel: MainMenuViewModel) {
-        output.update(with: viewModel)
+    func menuItemSelected(with index: Int) {
+        guard let game = viewModel.games[safe: index] else {
+            fatalError("The games should be present at this time.")
+        }
+        worker.requestPurchaseStatus(for: game)
     }
 }
 
-extension MainMenuInteractor: MainMenuWorkerOutput { }
+extension MainMenuInteractor: MainMenuWorkerOutput {
+    func didReceivePurchaseStatus(for game: Game, purchased: Bool) {
+        if purchased {
+            output.presentLevel(for: game)
+        } else {
+            output.presentPurchase(for: game)
+        }
+    }
+}

@@ -8,8 +8,6 @@ protocol StoreObserverDelegate: AnyObject {
 
 class StoreObserver: NSObject {
 
-    static let shared: StoreObserver = .init()
-
     /**
      Indicates whether the user is allowed to make payments.
      - returns: true if the user is allowed to make payments and false, otherwise.
@@ -31,9 +29,6 @@ class StoreObserver: NSObject {
 
     weak var delegate: StoreObserverDelegate?
 
-    override private init() {
-        super.init()
-    }
 
     /// Create and add a payment request to the payment queue.
     func buy(_ product: SKProduct) {
