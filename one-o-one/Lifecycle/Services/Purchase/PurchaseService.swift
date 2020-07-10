@@ -47,20 +47,13 @@ class PurchaseService {
     private let storeObserver: StoreObserver = .init()
     private let storeManager: StoreManager = .init()
 
-    private enum Products: String, CaseIterable {
-        case fullPackage = "oneoone.fullpackage"
-        case substractions = "oneoone.subtractions"
-        case multiplications = "oneoone.multiplications"
-        case divisions = "oneoone.divisions"
-    }
-
     private init() { }
 }
 
 extension PurchaseService: PurchaseServices {
     func retrieveProducts() {
         storeManager.startProductRequest(
-            with: Products.allCases.map { $0.rawValue }
+            with: Product.allCases.map { $0.rawValue }
         )
     }
 

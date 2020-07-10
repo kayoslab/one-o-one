@@ -1,6 +1,6 @@
 import UIKit
 
-struct MenuItemViewModel {
+struct MainMenuItemViewModel {
     private let menuItem: Game
     let index: Int
 

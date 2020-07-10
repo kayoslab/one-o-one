@@ -64,7 +64,7 @@
                         <viewLayoutGuide key="safeArea" id="6bJ-Ym-HRX"/>
                     </view>
                     <connections>
-                        <outlet property="stackView" destination="hdr-gG-FDP" id="ikm-c3-grS"/>
+                        <outlet property="menuItemsStackView" destination="hdr-gG-FDP" id="ikm-c3-grS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPu-fF-OZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

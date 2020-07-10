@@ -24,7 +24,9 @@ final class MainMenuViewController: UIViewController {
     // swiftlint:disable:next implicitly_unwrapped_optional
     var output: MainMenuViewControllerOutput!
 
-    @IBOutlet private weak var stackView: UIStackView?
+    /// The `UIStackView` that contains all menu items that are shown in the
+    /// main menu. This stack view needs to be filled with menu items.
+    @IBOutlet private weak var menuItemsStackView: UIStackView?
 
     // MARK: - Initializers
 
@@ -51,10 +53,12 @@ final class MainMenuViewController: UIViewController {
     /// This will automatically add the arranged subviews and request them
     /// to update their view autonomously.
     private func reloadData(with viewModel: MainMenuViewModel) {
-        guard let stackView = self.stackView else { return }
+        guard let menuItemsStackView = self.menuItemsStackView else { return }
+
+        menuItemsStackView.arrangedSubviews.forEach(menuItemsStackView.removeArrangedSubview)
 
         for index in 0..<viewModel.games.count {
-            let itemView: MenuItemView = .fromNib()
+            let itemView: MainMenuItemView = .fromNib()
             itemView.update(
                 with: .init(
                     with: viewModel.games[index],
@@ -63,7 +67,7 @@ final class MainMenuViewController: UIViewController {
             )
             itemView.delegate = self
 
-            stackView.addArrangedSubview(itemView)
+            menuItemsStackView.addArrangedSubview(itemView)
         }
     }
 }
@@ -79,7 +83,7 @@ extension MainMenuViewController: MainMenuPresenterOutput {
     }
 }
 
-extension MainMenuViewController: MenuItemViewDelegate {
+extension MainMenuViewController: MainMenuItemViewDelegate {
 
     func didSelectMenuItem(with index: Int) {
         output.menuItemSelected(with: index)

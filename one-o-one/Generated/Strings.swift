@@ -10,14 +10,14 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name
 internal enum L10n {
-  /// Addition
-  internal static let menuItemAddition = L10n.tr("Localizable", "menu_item_addition")
-  /// Division
-  internal static let menuItemDivision = L10n.tr("Localizable", "menu_item_division")
-  /// Multiplication
-  internal static let menuItemMultiplication = L10n.tr("Localizable", "menu_item_multiplication")
-  /// Substraction
-  internal static let menuItemSubstraction = L10n.tr("Localizable", "menu_item_substraction")
+  /// Additions
+  internal static let menuItemAdditions = L10n.tr("Localizable", "menu_item_additions")
+  /// Divisions
+  internal static let menuItemDivisions = L10n.tr("Localizable", "menu_item_divisions")
+  /// Multiplications
+  internal static let menuItemMultiplications = L10n.tr("Localizable", "menu_item_multiplications")
+  /// Substractions
+  internal static let menuItemSubstractions = L10n.tr("Localizable", "menu_item_substractions")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name

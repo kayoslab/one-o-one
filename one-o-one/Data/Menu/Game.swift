@@ -9,68 +9,59 @@ import UIKit
 ///           \ -------------> Level (z)
 enum Game: CaseIterable {
 
-    typealias AllCases = [Game]
-
-    static var allCases: [Game] = [
-        .addition(.basic(.first)),
-        .substraction(.basic(.first)),
-        .multiplication(.basic(.first)),
-        .division(.basic(.first))
-    ]
-
-    case addition(Level)
-    case substraction(Level)
-    case multiplication(Level)
-    case division(Level)
+    case additions
+    case subtractions
+    case multiplications
+    case divisions
 
     var title: String {
         switch self {
-        case .addition:
-            return L10n.menuItemAddition
-        case .substraction:
-            return L10n.menuItemSubstraction
-        case .multiplication:
-            return L10n.menuItemMultiplication
-        case .division:
-            return L10n.menuItemDivision
+        case .additions:
+            return L10n.menuItemAdditions
+        case .subtractions:
+            return L10n.menuItemSubstractions
+        case .multiplications:
+            return L10n.menuItemMultiplications
+        case .divisions:
+            return L10n.menuItemDivisions
         }
     }
 
     var purchaseable: Bool {
         switch self {
-        case .addition:
+        case .additions:
             return false
-        case .substraction:
+        case .subtractions:
             return true
-        case .multiplication:
+        case .multiplications:
             return true
-        case .division:
+        case .divisions:
             return true
         }
     }
 
     var isPurchased: Bool {
         switch self {
-        case .addition:
+        case .additions:
             return true
-        case .substraction:
+        case .subtractions:
             return Purchased.subtractions
-        case .multiplication:
+        case .multiplications:
             return Purchased.multiplications
-        case .division:
+        case .divisions:
             return Purchased.divisions
         }
     }
 
     var backgroundColor: UIColor {
         switch self {
-        case .addition:
+        case .additions:
             return .green
-        case .substraction:
+        case .subtractions:
             return .red
-        case .multiplication:
+        case .multiplications:
             return .blue
-        case .division:
+        case .divisions:
             return .purple
         }
     }

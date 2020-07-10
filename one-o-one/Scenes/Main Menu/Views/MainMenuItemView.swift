@@ -1,13 +1,13 @@
 import UIKit
 
-protocol MenuItemViewDelegate: class {
+protocol MainMenuItemViewDelegate: class {
     func didSelectMenuItem(with index: Int)
 }
 
-class MenuItemView: UIView {
+class MainMenuItemView: UIView {
     private var index: Int = 0
 
-    weak var delegate: MenuItemViewDelegate?
+    weak var delegate: MainMenuItemViewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +28,7 @@ class MenuItemView: UIView {
         delegate?.didSelectMenuItem(with: index)
     }
 
-    func update(with viewModel: MenuItemViewModel) {
+    func update(with viewModel: MainMenuItemViewModel) {
         backgroundColor = viewModel.backgroundColor
         index = viewModel.index
     }
