@@ -37,4 +37,17 @@ enum Product: String, CaseIterable {
             return Purchased.divisions
         }
     }
+
+    func updatePurchaseStatus(isPurchased: Bool) {
+        switch self {
+        case .fullPackage:
+            Purchased.fullPackage = isPurchased
+        case .subtractions:
+            Purchased.subtractions = isPurchased
+        case .multiplications:
+            Purchased.multiplications = isPurchased
+        case .divisions:
+            Purchased.divisions = isPurchased
+        }
+    }
 }

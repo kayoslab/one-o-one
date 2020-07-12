@@ -34,9 +34,16 @@ protocol PurchaseServiceApplicationMainInteraction {
 
 protocol PurchaseServices {
 
-    func buy(product: Product)
+    /// Attempts to buy a product via an InApp purchase.
+    ///
+    /// - Parameter product: The product that should be bought.
+    /// - Parameter completion: A completion that will be called when the operation finishes.
+    ///                         The completion operation will be called immediately if a secon
+    ///                         operation is already in progress.
+    /// - Parameter didExecute: Informs if the execution of the operation was possible.
+    func buy(product: Product, completion: @escaping (_ didExecute: Bool) -> Void)
 
-    func restorePurchase()
+    func restorePurchase(completion: @escaping (_ didExecute: Bool) -> Void)
 }
 
 class PurchaseService {
@@ -44,24 +51,62 @@ class PurchaseService {
 
     private let storeObserver: StoreObserver = .init()
     private let storeManager: StoreManager = .init()
+    /// A list of available products according to the AppStore.
     private var availableProducts: [SKProduct] = []
+
+    /// A completion that is used by the `buy(product: Product)`
+    /// call to inform the caller that the attempt to purchase has finished.
+    ///
+    /// - Parameter didExecute: Informs if the execution of the
+    ///                         operation was possible.
+    private var purchaseCompletion: ((_ didExecute: Bool) -> Void)?
+
+    /// A completion that is used by the `restorePurchase()`
+    /// call to inform the caller that the attempt to restore has finished.
+    ///
+    /// - Parameter didExecute: Informs if the execution of the
+    ///                         operation was possible.
+    private var restoreCompletion: ((_ didExecute: Bool) -> Void)?
 
     private init() { }
 }
 
 extension PurchaseService: PurchaseServices {
 
-    func buy(product: Product) {
-        guard let availableProduct = availableProducts
-            .first(where: { $0.productIdentifier == product.rawValue }) else {
-                // Notify delegate
-                return
+    func buy(product: Product, completion: @escaping (_ didExecute: Bool) -> Void) {
+        // Make sure the product is not yet purchased.
+        guard !product.isPurchased else {
+            return completion(true)
         }
 
+        // Make sure there's no other purchase operation ongoing.
+        guard purchaseCompletion == nil else {
+            return completion(false)
+        }
+
+        // Make sure the product is available for purchase.
+        guard let availableProduct = availableProducts
+            .first(where: { $0.productIdentifier == product.rawValue })
+        else {
+            // Refreshing the products at this point could solve
+            // some issues that might occur on second try.
+            storeManager.startProductRequest(
+                with: Product.allCases.map { $0.rawValue }
+            )
+            return completion(false)
+        }
+
+        purchaseCompletion = completion
         storeObserver.buy(availableProduct)
     }
 
-    func restorePurchase() {
+    func restorePurchase(completion: @escaping (_ didExecute: Bool) -> Void) {
+        guard restoreCompletion == nil else {
+            return completion(false)
+        }
+
+        restoreCompletion = completion
+
         storeObserver.delegate = self
         storeObserver.restore()
     }
@@ -78,14 +123,16 @@ extension PurchaseService: StoreObserverDelegate {
             }
 
             let productIdentifier = transaction.payment.productIdentifier
-            // Mark product as purchased
+            Product(rawValue: productIdentifier)?.updatePurchaseStatus(isPurchased: true)
         }
 
-        // Update after purchase
+        purchaseCompletion?(true)
+        purchaseCompletion = nil
     }
 
     func purchaseFailed() {
-        // Notify that something unexpected happened
+        purchaseCompletion?(false)
+        purchaseCompletion = nil
     }
 
     func storeObserverRestored(transactions: [SKPaymentTransaction]) {
@@ -97,12 +144,16 @@ extension PurchaseService: StoreObserverDelegate {
             }
 
             let productIdentifier = transaction.payment.productIdentifier
-            // Mark product as purchased
+            Product(rawValue: productIdentifier)?.updatePurchaseStatus(isPurchased: true)
         }
+
+        restoreCompletion?(true)
+        restoreCompletion = nil
     }
 
     func storeObserverFailedRestore() {
-        // Notify that something unexpected happened
+        restoreCompletion?(false)
+        restoreCompletion = nil
     }
 }
 
@@ -125,5 +176,7 @@ extension PurchaseService: PurchaseServiceApplicationMainInteraction {
 
     func stop() {
         SKPaymentQueue.default().remove(storeObserver)
+        restoreCompletion = nil
+        purchaseCompletion = nil
     }
 }
