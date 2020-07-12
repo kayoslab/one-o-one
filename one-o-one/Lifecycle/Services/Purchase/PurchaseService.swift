@@ -34,9 +34,7 @@ protocol PurchaseServiceApplicationMainInteraction {
 
 protocol PurchaseServices {
 
-    func retrieveProducts()
-
-    func buy(product: String)
+    func buy(product: Product)
 
     func restorePurchase()
 }
@@ -46,19 +44,21 @@ class PurchaseService {
 
     private let storeObserver: StoreObserver = .init()
     private let storeManager: StoreManager = .init()
+    private var availableProducts: [SKProduct] = []
 
     private init() { }
 }
 
 extension PurchaseService: PurchaseServices {
-    func retrieveProducts() {
-        storeManager.startProductRequest(
-            with: Product.allCases.map { $0.rawValue }
-        )
-    }
 
-    func buy(product: String) {
+    func buy(product: Product) {
+        guard let availableProduct = availableProducts
+            .first(where: { $0.productIdentifier == product.rawValue }) else {
+                // Notify delegate
+                return
+        }
 
+        storeObserver.buy(availableProduct)
     }
 
     func restorePurchase() {
@@ -68,20 +68,59 @@ extension PurchaseService: PurchaseServices {
 }
 
 extension PurchaseService: StoreObserverDelegate {
-    func storeObserverRestoreDidSucceed() {
 
+    func purchaseExecuted(transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            guard transaction.error == nil,
+                transaction.transactionState == .purchased || transaction.transactionState == .restored
+            else {
+                continue
+            }
+
+            let productIdentifier = transaction.payment.productIdentifier
+            // Mark product as purchased
+        }
+
+        // Update after purchase
+    }
+
+    func purchaseFailed() {
+        // Notify that something unexpected happened
+    }
+
+    func storeObserverRestored(transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            guard transaction.error == nil,
+                transaction.transactionState == .purchased || transaction.transactionState == .restored
+            else {
+                continue
+            }
+
+            let productIdentifier = transaction.payment.productIdentifier
+            // Mark product as purchased
+        }
+    }
+
+    func storeObserverFailedRestore() {
+        // Notify that something unexpected happened
     }
 }
 
 extension PurchaseService: StoreManagerDelegate {
     func storeManagerDidReceiveResponse(_ response: [Section]) {
-        dump(response)
+        availableProducts = response
+            .filter { $0.type == .availableProducts }
+            .compactMap { $0.elements as? [SKProduct] }
+            .flatMap { $0 }
     }
 }
 
 extension PurchaseService: PurchaseServiceApplicationMainInteraction {
     func start() {
         SKPaymentQueue.default().add(storeObserver)
+        storeManager.startProductRequest(
+            with: Product.allCases.map { $0.rawValue }
+        )
     }
 
     func stop() {

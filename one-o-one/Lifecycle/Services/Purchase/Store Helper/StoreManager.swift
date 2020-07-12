@@ -36,6 +36,7 @@ struct Section {
     /// List of products/purchases.
     var elements = [Any]()
 }
+
 protocol StoreManagerDelegate: AnyObject {
     /// Provides the delegate with the App Store's response.
     func storeManagerDidReceiveResponse(_ response: [Section])
@@ -93,24 +94,16 @@ extension StoreManager: SKProductsRequestDelegate {
         _ request: SKProductsRequest,
         didReceive response: SKProductsResponse
     ) {
-        if !storeResponse.isEmpty {
-            storeResponse.removeAll()
-        }
+        storeResponse.removeAll()
 
         // products contains products whose identifiers have been recognized
         // by the App Store. As such, they can be purchased.
-        if !response.products.isEmpty {
-            availableProducts = response.products
-            print("Valid Items")
-            dump(availableProducts.map { $0.localizedTitle })
-        }
+        availableProducts = response.products
 
         // invalidProductIdentifiers contains all product identifiers not
         // recognized by the App Store.
         if !response.invalidProductIdentifiers.isEmpty {
             invalidProductIdentifiers = response.invalidProductIdentifiers
-            print("Invalid Items")
-            dump(invalidProductIdentifiers)
         }
 
         if !availableProducts.isEmpty {
@@ -137,7 +130,9 @@ extension StoreManager: SKProductsRequestDelegate {
                     return
                 }
 
-                self?.delegate?.storeManagerDidReceiveResponse(storeResponse)
+                self?.delegate?.storeManagerDidReceiveResponse(
+                    storeResponse
+                )
             }
         }
     }
@@ -148,8 +143,15 @@ extension StoreManager: SKProductsRequestDelegate {
 /// Extends StoreManager to conform to SKRequestDelegate.
 extension StoreManager: SKRequestDelegate {
 
+    func requestDidFinish(_ request: SKRequest) {
+
+    }
+
     // Called when the product request failed.
-    func request(_ request: SKRequest, didFailWithError error: Error) {
+    func request(
+        _ request: SKRequest,
+        didFailWithError error: Error
+    ) {
         dump(error)
     }
 }
