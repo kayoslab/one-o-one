@@ -2,4 +2,4 @@ language:
   - swift
 osx_image: xcode11.5
 script:
-  - xcodebuild test -project ./one-o-one.xcodeproj -scheme one-o-one -enableCodeCoverage YES ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,OS=13.5,name=iPhone X'
+  - xcodebuild test -project ./one-o-one.xcodeproj -scheme one-o-one -enableCodeCoverage YES ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro'
