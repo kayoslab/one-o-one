@@ -55,7 +55,18 @@
 		60B1C24A24B88F940037B804 /* PurchaseMenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B1C24924B88F940037B804 /* PurchaseMenuItemViewModel.swift */; };
 		60B1C24C24B88FB10037B804 /* PurchaseMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B1C24B24B88FB10037B804 /* PurchaseMenuItemView.xib */; };
 		60B1C24E24B8905F0037B804 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B1C24D24B8905F0037B804 /* Product.swift */; };
+		60DEA8B624BC54640079C31F /* MainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEA8B524BC54640079C31F /* MainTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		60DEA8B824BC54640079C31F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6065470424B593B40050DBD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6065470B24B593B40050DBD8;
+			remoteInfo = "one-o-one";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6065470C24B593B40050DBD8 /* one-o-one.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "one-o-one.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +122,9 @@
 		60B1C24924B88F940037B804 /* PurchaseMenuItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuItemViewModel.swift; sourceTree = "<group>"; };
 		60B1C24B24B88FB10037B804 /* PurchaseMenuItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseMenuItemView.xib; sourceTree = "<group>"; };
 		60B1C24D24B8905F0037B804 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		60DEA8B324BC54640079C31F /* one-o-one-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "one-o-one-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60DEA8B524BC54640079C31F /* MainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTests.swift; sourceTree = "<group>"; };
+		60DEA8B724BC54640079C31F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +136,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60DEA8B024BC54640079C31F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				6065470E24B593B40050DBD8 /* one-o-one */,
+				60DEA8B424BC54640079C31F /* one-o-one-tests */,
 				6065470D24B593B40050DBD8 /* Products */,
 				6065478624B702860050DBD8 /* Frameworks */,
 			);
@@ -138,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				6065470C24B593B40050DBD8 /* one-o-one.app */,
+				60DEA8B324BC54640079C31F /* one-o-one-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -336,6 +359,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		60DEA8B424BC54640079C31F /* one-o-one-tests */ = {
+			isa = PBXGroup;
+			children = (
+				60DEA8B524BC54640079C31F /* MainTests.swift */,
+				60DEA8B724BC54640079C31F /* Info.plist */,
+			);
+			path = "one-o-one-tests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -359,6 +391,24 @@
 			productReference = 6065470C24B593B40050DBD8 /* one-o-one.app */;
 			productType = "com.apple.product-type.application";
 		};
+		60DEA8B224BC54640079C31F /* one-o-one-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60DEA8BA24BC54640079C31F /* Build configuration list for PBXNativeTarget "one-o-one-tests" */;
+			buildPhases = (
+				60DEA8AF24BC54640079C31F /* Sources */,
+				60DEA8B024BC54640079C31F /* Frameworks */,
+				60DEA8B124BC54640079C31F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60DEA8B924BC54640079C31F /* PBXTargetDependency */,
+			);
+			name = "one-o-one-tests";
+			productName = "one-o-one-tests";
+			productReference = 60DEA8B324BC54640079C31F /* one-o-one-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -371,6 +421,10 @@
 				TargetAttributes = {
 					6065470B24B593B40050DBD8 = {
 						CreatedOnToolsVersion = 11.5;
+					};
+					60DEA8B224BC54640079C31F = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 6065470B24B593B40050DBD8;
 					};
 				};
 			};
@@ -387,6 +441,7 @@
 			projectRoot = "";
 			targets = (
 				6065470B24B593B40050DBD8 /* one-o-one */,
+				60DEA8B224BC54640079C31F /* one-o-one-tests */,
 			);
 		};
 /* End PBXProject section */
@@ -403,6 +458,13 @@
 				6065474124B5A4370050DBD8 /* MainMenu.storyboard in Resources */,
 				6065477724B5B0670050DBD8 /* MainMenuItemView.xib in Resources */,
 				60B1C24C24B88FB10037B804 /* PurchaseMenuItemView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60DEA8B124BC54640079C31F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +575,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60DEA8AF24BC54640079C31F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60DEA8B624BC54640079C31F /* MainTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60DEA8B924BC54640079C31F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6065470B24B593B40050DBD8 /* one-o-one */;
+			targetProxy = 60DEA8B824BC54640079C31F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6065476A24B5AD400050DBD8 /* Localizable.strings */ = {
@@ -681,6 +759,46 @@
 			};
 			name = Release;
 		};
+		60DEA8BB24BC54640079C31F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5HCUYE57C;
+				INFOPLIST_FILE = "one-o-one-tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cr0ss.one-o-one-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/one-o-one.app/one-o-one";
+			};
+			name = Debug;
+		};
+		60DEA8BC24BC54640079C31F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5HCUYE57C;
+				INFOPLIST_FILE = "one-o-one-tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cr0ss.one-o-one-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/one-o-one.app/one-o-one";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -698,6 +816,15 @@
 			buildConfigurations = (
 				6065472124B593B60050DBD8 /* Debug */,
 				6065472224B593B60050DBD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60DEA8BA24BC54640079C31F /* Build configuration list for PBXNativeTarget "one-o-one-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60DEA8BB24BC54640079C31F /* Debug */,
+				60DEA8BC24BC54640079C31F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
