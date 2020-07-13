@@ -7,7 +7,7 @@ import UIKit
  */
 struct CanvasViewModel {
     // Properties for line drawing
-    var lineColor: UIColor = .white
+    var lineColor: UIColor = .black
     var fillColor: UIColor = .clear
-    var lineWidth: CGFloat = 10.0
+    var lineWidth: CGFloat = 5.0
 }

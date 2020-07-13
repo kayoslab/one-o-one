@@ -10,7 +10,7 @@ class ClassificationServive {
     static let shared: ClassificationServive = .init()
 
     private var requests: [VNRequest] = []
-    private var classificationCompletion: ((String?, Error?) -> Void)?
+    private var classificationCompletion: ((Result<String, Error>) -> Void)?
 
     private init() {
         // load MNIST model for the use with the Vision framework.
@@ -36,26 +36,30 @@ class ClassificationServive {
     /// - Parameters:
     ///   - image: The image that needs classification
     ///   - classificationCompletion: A completion which is being called on completion
-    ///                               of the classification.
-    ///   - classification: A string representation of the classification result if available.
-    ///   - error: An optional error that can either contain a Vision specific error or a
-    ///            `ClassificationServiceError` instance.
+    ///                               of the classification. This can contain A string representation
+    ///                               of the classification result if available. Otherwise this will
+    ///                               contain an error that can either be a Vision specific error
+    ///                               or a `ClassificationServiceError` instance.
     func classify(
         image: UIImage,
-        classificationCompletion: @escaping (_ classification: String?, _ error: Error?) -> Void
+        classificationCompletion: @escaping (Result<String, Error>) -> Void
     ) {
         // scale the image to the required size of 28x28 for better recognition results
-        guard let scaledImage = scaleImage(
-            image: image,
-            toSize: CGSize(
-                width: 28,
-                height: 28
-            )
-        )?.cgImage else { return }
+        guard
+            let scaledImage = scaleImage(
+                image: image,
+                toSize: CGSize(
+                    width: 28,
+                    height: 28
+                )
+            ),
+            let noirImage = noir(image: scaledImage),
+            let cgImage = noirImage.cgImage
+        else { return }
 
         // create a handler that should perform the vision request
         let imageRequestHandler = VNImageRequestHandler(
-            cgImage: scaledImage,
+            cgImage: cgImage,
             options: [:]
         )
 
@@ -65,7 +69,7 @@ class ClassificationServive {
                 try imageRequestHandler.perform(self?.requests ?? [])
             } catch {
                 DispatchQueue.main.async {
-                    self?.classificationCompletion?(nil, error)
+                    self?.classificationCompletion?(.failure(error))
                     self?.classificationCompletion = nil
                 }
             }
@@ -86,16 +90,15 @@ class ClassificationServive {
         let classification = results
             .compactMap { $0 as? VNClassificationObservation }
             .sorted { $0.confidence > $1.confidence }
-            .filter { $0.confidence > 0.8 }
             .map { $0.identifier }
             .first
 
         DispatchQueue.main.async { [weak self] in
             if let classification = classification {
-                self?.classificationCompletion?(classification, nil)
+                self?.classificationCompletion?(.success(classification))
                 self?.classificationCompletion = nil
             } else {
-                self?.classificationCompletion?(classification, ClassificationServiceError.noResults)
+                self?.classificationCompletion?(.failure(ClassificationServiceError.noResults))
                 self?.classificationCompletion = nil
             }
         }
@@ -112,5 +115,25 @@ class ClassificationServive {
         UIGraphicsEndImageContext()
 
         return newImage
+    }
+
+    private func noir(
+        image: UIImage
+    ) -> UIImage? {
+        let context = CIContext(options: nil)
+        guard let currentFilter = CIFilter(name: "CIPhotoEffectNoir") else { return nil }
+        currentFilter.setValue(
+            CIImage(image: image),
+            forKey: kCIInputImageKey
+        )
+        if let output = currentFilter.outputImage,
+            let cgImage = context.createCGImage(output, from: output.extent) {
+            return UIImage(
+                cgImage: cgImage,
+                scale: image.scale,
+                orientation: image.imageOrientation
+            )
+        }
+        return nil
     }
 }

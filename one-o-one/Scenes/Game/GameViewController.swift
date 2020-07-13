@@ -19,6 +19,9 @@ protocol GameViewControllerOutput {
  */
 final class GameViewController: UIViewController {
 
+    @IBOutlet private weak var leftCanvas: CanvasView?
+    @IBOutlet private weak var rightCanvas: CanvasView?
+
     // swiftlint:disable:next implicitly_unwrapped_optional
     var output: GameViewControllerOutput!
     /// This property should contain a `Game` which tells us about the content

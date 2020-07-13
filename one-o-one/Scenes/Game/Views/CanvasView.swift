@@ -28,6 +28,9 @@ class CanvasView: UIView {
 
         guard !fired else { return }
 
+        timer?.invalidate()
+        timer = nil
+
         // get the touch position when user starts drawing
         let touch = touches.first
         startingPoint = touch?.location(in: self)
@@ -61,7 +64,24 @@ class CanvasView: UIView {
 
         guard !fired else { return }
 
-        timer = .init(timeInterval: .init(1.5), repeats: false, block: { _ in })
+        let timer = Timer(timeInterval: 1.0, repeats: false) { _ in
+            guard let image = UIImage(
+                view: self
+            ) else { return }
+            ClassificationServive.shared.classify(
+                image: image,
+                classificationCompletion: { result in
+                    switch result {
+                    case .success(let classification):
+                        print("Classification: \(classification)")
+                    case .failure(let error):
+                        dump(error)
+                    }
+                }
+            )
+        }
+        self.timer = timer
+        RunLoop.current.add(timer, forMode: .default)
     }
 
     func drawShapeLayer() {
