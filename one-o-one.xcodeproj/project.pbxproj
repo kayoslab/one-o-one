@@ -59,6 +59,9 @@
 		60CCE80E24BC5C7A0072F9D1 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE80D24BC5C7A0072F9D1 /* CanvasView.swift */; };
 		60CCE81024BC5D300072F9D1 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE80F24BC5D300072F9D1 /* UIImage+View.swift */; };
 		60CCE81224BC5E7A0072F9D1 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */; };
+		60CCE81424BC610C0072F9D1 /* CanvasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60CCE81324BC610C0072F9D1 /* CanvasView.xib */; };
+		60CCE81724BC91BE0072F9D1 /* ClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE81624BC91BE0072F9D1 /* ClassificationService.swift */; };
+		60CCE81924BC927A0072F9D1 /* MNISTClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE81824BC927A0072F9D1 /* MNISTClassifier.mlmodel */; };
 		60DEA8B624BC54640079C31F /* MainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEA8B524BC54640079C31F /* MainTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +133,9 @@
 		60CCE80D24BC5C7A0072F9D1 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		60CCE80F24BC5D300072F9D1 /* UIImage+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+View.swift"; sourceTree = "<group>"; };
 		60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
+		60CCE81324BC610C0072F9D1 /* CanvasView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CanvasView.xib; sourceTree = "<group>"; };
+		60CCE81624BC91BE0072F9D1 /* ClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationService.swift; sourceTree = "<group>"; };
+		60CCE81824BC927A0072F9D1 /* MNISTClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNISTClassifier.mlmodel; sourceTree = "<group>"; };
 		60DEA8B324BC54640079C31F /* one-o-one-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "one-o-one-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DEA8B524BC54640079C31F /* MainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTests.swift; sourceTree = "<group>"; };
 		60DEA8B724BC54640079C31F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 		6065472324B593C80050DBD8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				60CCE81524BC91570072F9D1 /* Canvas */,
 				6065472424B593C80050DBD8 /* Purchase */,
 			);
 			path = Services;
@@ -224,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				6065477024B5AF5F0050DBD8 /* Generated */,
+				60CCE81824BC927A0072F9D1 /* MNISTClassifier.mlmodel */,
 				6065476024B5AC1A0050DBD8 /* LaunchScreen.storyboard */,
 				6065476D24B5ADC50050DBD8 /* Assets.xcassets */,
 				6065471D24B593B60050DBD8 /* Info.plist */,
@@ -362,9 +370,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		60CCE81524BC91570072F9D1 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				60CCE81624BC91BE0072F9D1 /* ClassificationService.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
 		60DEA8AE24BC45BF0079C31F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				60CCE81324BC610C0072F9D1 /* CanvasView.xib */,
 				60CCE80D24BC5C7A0072F9D1 /* CanvasView.swift */,
 				60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */,
 			);
@@ -471,6 +488,7 @@
 				6065474124B5A4370050DBD8 /* MainMenu.storyboard in Resources */,
 				6065477724B5B0670050DBD8 /* MainMenuItemView.xib in Resources */,
 				60B1C24C24B88FB10037B804 /* PurchaseMenuItemView.xib in Resources */,
+				60CCE81424BC610C0072F9D1 /* CanvasView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +606,8 @@
 				60B1C24E24B8905F0037B804 /* Product.swift in Sources */,
 				60B1C24024B73AFD0037B804 /* GameViewController.swift in Sources */,
 				6065473224B595240050DBD8 /* StoreObserver.swift in Sources */,
+				60CCE81724BC91BE0072F9D1 /* ClassificationService.swift in Sources */,
+				60CCE81924BC927A0072F9D1 /* MNISTClassifier.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

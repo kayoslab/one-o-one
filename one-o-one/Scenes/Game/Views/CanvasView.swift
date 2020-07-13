@@ -8,6 +8,11 @@ class CanvasView: UIView {
     private var touchPoint: CGPoint?
     private var startingPoint: CGPoint?
 
+    private var timer: Timer?
+    private var fired: Bool {
+        return !(timer?.isValid ?? true)
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -21,6 +26,8 @@ class CanvasView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
 
+        guard !fired else { return }
+
         // get the touch position when user starts drawing
         let touch = touches.first
         startingPoint = touch?.location(in: self)
@@ -28,6 +35,8 @@ class CanvasView: UIView {
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
+
+        guard !fired else { return }
 
         // get the next touch point as the user draws
         let touch = touches.first
@@ -47,6 +56,14 @@ class CanvasView: UIView {
         drawShapeLayer()
     }
 
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+
+        guard !fired else { return }
+
+        timer = .init(timeInterval: .init(1.5), repeats: false, block: { _ in })
+    }
+
     func drawShapeLayer() {
         let shapeLayer = CAShapeLayer()
         // the shape layer is used to draw along the already created path
@@ -60,7 +77,6 @@ class CanvasView: UIView {
         // adding the shapelayer to the vies layer and forcing a redraw
         layer.addSublayer(shapeLayer)
         setNeedsDisplay()
-
     }
 
 //    /// Probably not necessary at this point since we'll just
