@@ -523,7 +523,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nswiftgen config run\n";
+			shellScript = "#!/bin/bash\nif [ -x \"$(command -v swiftgen)\" ]; then\n    swiftgen config run\nelse\n    echo \"An error occured. Swiftgen should be installed.\"\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
