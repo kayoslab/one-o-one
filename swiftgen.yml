@@ -1,0 +1,18 @@
+strings:
+  inputs: one-o-one/Localization/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: one-o-one/Generated/Strings.swift
+xcassets:
+  inputs:
+    - one-o-one/Resources/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: one-o-one/Generated/Assets.swift
+ib:
+    inputs: one-o-one/Scenes
+    outputs:
+        - templateName: scenes-swift5
+          output: one-o-one/Generated/Scenes.swift
+        - templateName: segues-swift5
+          output: one-o-one/Generated/Segues.swift

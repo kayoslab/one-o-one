@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e5K-3K-Sf6">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Menu View Controller-->
+        <scene sceneID="emP-ec-gq8">
+            <objects>
+                <viewController storyboardIdentifier="MainMenu" id="e5K-3K-Sf6" customClass="MainMenuViewController" customModule="one_o_one" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k9c-FA-edP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q12-Um-d6D">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-RS-Gpm">
+                                        <rect key="frame" x="0.0" y="183.5" width="375" height="300"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-gG-FDP">
+                                                <rect key="frame" x="16" y="0.0" width="1" height="300"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMq-Oc-gEe" userLabel="Placeholder">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1" height="300"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="1" id="1I0-tU-EpZ"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="hdr-gG-FDP" firstAttribute="leading" secondItem="JUL-RS-Gpm" secondAttribute="leading" constant="16" id="5jv-ew-s2a"/>
+                                            <constraint firstItem="hdr-gG-FDP" firstAttribute="height" secondItem="JUL-RS-Gpm" secondAttribute="height" id="SjF-E9-Atk"/>
+                                            <constraint firstAttribute="trailing" secondItem="hdr-gG-FDP" secondAttribute="trailing" constant="16" id="lCo-dt-UNu"/>
+                                            <constraint firstItem="hdr-gG-FDP" firstAttribute="top" secondItem="JUL-RS-Gpm" secondAttribute="top" id="llH-gI-9CI"/>
+                                            <constraint firstAttribute="bottom" secondItem="hdr-gG-FDP" secondAttribute="bottom" id="vlI-sg-Ztx"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="al3-Pk-6rK"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="lho-he-plB"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="JUL-RS-Gpm" firstAttribute="height" secondItem="q12-Um-d6D" secondAttribute="width" multiplier="0.8" id="Vye-Ak-37N"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6bJ-Ym-HRX" firstAttribute="trailing" secondItem="JUL-RS-Gpm" secondAttribute="trailing" id="2Df-JX-Tt6"/>
+                            <constraint firstItem="q12-Um-d6D" firstAttribute="top" secondItem="k9c-FA-edP" secondAttribute="top" id="AEM-yY-yby"/>
+                            <constraint firstItem="q12-Um-d6D" firstAttribute="leading" secondItem="k9c-FA-edP" secondAttribute="leading" id="E0g-ei-dvC"/>
+                            <constraint firstItem="JUL-RS-Gpm" firstAttribute="leading" secondItem="6bJ-Ym-HRX" secondAttribute="leading" id="Gol-Va-BW7"/>
+                            <constraint firstAttribute="trailing" secondItem="q12-Um-d6D" secondAttribute="trailing" id="Pj7-45-dYT"/>
+                            <constraint firstItem="JUL-RS-Gpm" firstAttribute="centerY" secondItem="6bJ-Ym-HRX" secondAttribute="centerY" id="TrZ-el-7IF"/>
+                            <constraint firstAttribute="bottom" secondItem="q12-Um-d6D" secondAttribute="bottom" id="zHh-rf-FFo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6bJ-Ym-HRX"/>
+                    </view>
+                    <connections>
+                        <outlet property="menuItemsStackView" destination="hdr-gG-FDP" id="ikm-c3-grS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tPu-fF-OZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144.80000000000001" y="-0.44977511244377816"/>
+        </scene>
+    </scenes>
+</document>
