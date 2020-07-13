@@ -61,15 +61,28 @@ extension PurchaseMenuInteractor: PurchaseMenuViewControllerOutput {
         output.update(with: viewModel)
     }
 
-    func viewContentUpdated(with viewModel: PurchaseMenuViewModel) {
-        output.update(with: viewModel)
-    }
-
     func closeButtonSelected() {
         output.closePurchaseMenu()
+    }
+
+    func purchaseSelected(with product: Product) {
+        worker.requestPurchase(for: product)
     }
 }
 
 extension PurchaseMenuInteractor: PurchaseMenuWorkerOutput {
-
+    func didExecutePurchase(with result: Result<Product, PurchaseWorkerError>) {
+        switch result {
+        case .success:
+            viewModel = .init()
+            output.update(with: viewModel)
+        case .failure(let error):
+            if case let .unexpected(product) = error {
+                viewModel = .init(with: product)
+                output.update(with: viewModel)
+            } else {
+                assert(true, "Undefined error")
+            }
+        }
+    }
 }

@@ -1,5 +1,6 @@
 import Foundation
 
+/// Store if a `Product` was purchased
 struct Purchased {
     // swiftlint:disable let_var_whitespace
     @UserDefault("oneoone.fullpackage")

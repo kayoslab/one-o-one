@@ -1,26 +1,23 @@
 import UIKit
 
 struct PurchaseMenuItemViewModel {
-    private let productItem: Product
-    let index: Int
+    let product: Product
+    private static let gold = UIColor(
+        red: 0.83,
+        green: 0.68,
+        blue: 0.21,
+        alpha: 1.0
+    )
 
     var backgroundColor: UIColor {
-        let gold = UIColor(
-            red: 0.83,
-            green: 0.68,
-            blue: 0.21,
-            alpha: 1.0
-        )
-
-        if productItem.included.count > 1 {
-            return gold
+        if product.included.count > 1 {
+            return PurchaseMenuItemViewModel.gold
         } else {
-            return productItem.included.first?.backgroundColor ?? gold
+            return product.included.first?.primaryColor ?? PurchaseMenuItemViewModel.gold
         }
     }
 
-    init(with productItem: Product, index: Int) {
-        self.productItem = productItem
-        self.index = index
+    init(with product: Product, index: Int) {
+        self.product = product
     }
 }

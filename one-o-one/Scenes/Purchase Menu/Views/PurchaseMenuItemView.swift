@@ -1,11 +1,11 @@
 import UIKit
 
 protocol PurchaseMenuItemViewDelegate: class {
-    func didSelectMenuItem(with index: Int)
+    func didSelectPurchase(with product: Product)
 }
 
 class PurchaseMenuItemView: UIView {
-    private var index: Int = 0
+    private var product: Product = .fullPackage
 
     weak var delegate: PurchaseMenuItemViewDelegate?
 
@@ -26,10 +26,10 @@ class PurchaseMenuItemView: UIView {
     }
 
     @IBAction private func didTap(_ sender: UITapGestureRecognizer) {
-
+        delegate?.didSelectPurchase(with: product)
     }
 
-    func wiggle() {
+    func highlight() {
         let transformAnim = CAKeyframeAnimation(keyPath: "transform")
         transformAnim.values = [
             NSValue(
@@ -41,12 +41,12 @@ class PurchaseMenuItemView: UIView {
         ]
         transformAnim.autoreverses = true
         transformAnim.duration = 0.115
-        transformAnim.repeatCount = 15.0
+        transformAnim.repeatCount = 5.0
         layer.add(transformAnim, forKey: "transform")
     }
 
     func update(with viewModel: PurchaseMenuItemViewModel) {
         backgroundColor = viewModel.backgroundColor
-        index = viewModel.index
+        product = viewModel.product
     }
 }

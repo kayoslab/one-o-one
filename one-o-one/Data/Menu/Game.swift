@@ -1,12 +1,8 @@
 import UIKit
 
-/// A game consists of multiple chapters.
-/// Each chapter consists of multiple Levels.
-/// This results in the tree:
-///
-/// Game (x)
-/// \ -------------> Chapter (y)
-///           \ -------------> Level (z)
+/// A list of possible games that can be played by the user. A `Game` represents
+/// an entry in the main menu. Access to one or multiple games can be purchased
+/// using a `Product`.
 enum Game: CaseIterable {
 
     case additions
@@ -14,6 +10,7 @@ enum Game: CaseIterable {
     case multiplications
     case divisions
 
+    /// The localised title of the game.
     var title: String {
         switch self {
         case .additions:
@@ -27,20 +24,21 @@ enum Game: CaseIterable {
         }
     }
 
+    /// Some games are already included in the initial package to
+    /// give the  user an idea of what they can spend money on.
     var purchaseable: Bool {
         switch self {
         case .additions:
             return false
-        case .subtractions:
-            return true
-        case .multiplications:
-            return true
-        case .divisions:
+        default:
             return true
         }
     }
 
-    var isPurchased: Bool {
+    /// Based on the purchase state this property provides the
+    /// status if a user can start a game or first need to buy a
+    /// `Product`.
+    var isPlayable: Bool {
         switch self {
         case .additions:
             return true
@@ -53,7 +51,9 @@ enum Game: CaseIterable {
         }
     }
 
-    var backgroundColor: UIColor {
+    /// The games primary color which can be used to style the
+    /// game's tiles.
+    var primaryColor: UIColor {
         switch self {
         case .additions:
             return .green
@@ -65,25 +65,4 @@ enum Game: CaseIterable {
             return .purple
         }
     }
-}
-
-
-enum Level {
-    case basic(Chapter)
-    case intermediate(Chapter)
-    case expert(Chapter)
-    case deity(Chapter)
-}
-
-enum Chapter: Int {
-    case first
-    case second
-    case third
-    case fourth
-    case fifth
-    case sigth
-    case seventh
-    case eight
-    case ninth
-    case tenth
 }

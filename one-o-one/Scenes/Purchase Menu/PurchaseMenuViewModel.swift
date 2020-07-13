@@ -16,4 +16,10 @@ struct PurchaseMenuViewModel {
     var regularProducts: [Product] = [
         .fullPackage
     ]
+    
+    var unsuccessfulPurchase: Product?
+    
+    init(with unsuccessfulPurchase: Product? = nil) {
+        self.unsuccessfulPurchase = unsuccessfulPurchase
+    }
 }

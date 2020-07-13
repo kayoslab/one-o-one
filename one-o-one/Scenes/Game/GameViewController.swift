@@ -21,6 +21,9 @@ final class GameViewController: UIViewController {
 
     // swiftlint:disable:next implicitly_unwrapped_optional
     var output: GameViewControllerOutput!
+    /// This property should contain a `Game` which tells us about the content
+    /// that should be loaded into the module.
+    var requestedGame: Game?
 
     // MARK: - Initializers
 

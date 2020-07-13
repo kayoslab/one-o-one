@@ -36,11 +36,12 @@ protocol PurchaseServices {
 
     /// Attempts to buy a product via an InApp purchase.
     ///
-    /// - Parameter product: The product that should be bought.
-    /// - Parameter completion: A completion that will be called when the operation finishes.
-    ///                         The completion operation will be called immediately if a secon
-    ///                         operation is already in progress.
-    /// - Parameter didExecute: Informs if the execution of the operation was possible.
+    /// - Parameters:
+    ///    - product: The product that should be bought.
+    ///    - completion: A completion that will be called when the operation finishes.
+    ///                The completion operation will be called immediately if a secon
+    ///                operation is already in progress.
+    ///    - didExecute: Informs if the execution of the operation was possible.
     func buy(product: Product, completion: @escaping (_ didExecute: Bool) -> Void)
 
     func restorePurchase(completion: @escaping (_ didExecute: Bool) -> Void)

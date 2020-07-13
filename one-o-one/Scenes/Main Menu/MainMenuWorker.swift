@@ -1,5 +1,9 @@
 import UIKit
 
+enum MainMenuWorkerError: Error {
+    case notPurchased(Game)
+}
+
 /**
  Data that will be directed towards the `MainMenuWorker` coming 
  from the `MainMenuInteractor`.
@@ -10,13 +14,13 @@ protocol MainMenuWorkerInput: class {
     var output: MainMenuWorkerOutput! { get set }
 
     /// Request if a game item needs to be purchased before it can be
-    /// shown to the user. This function will trigger a call of the
-    /// `didReceivePurchaseStatus` when the information was
-    /// retrieved from the `PurchaseManager`.
+    /// played by the user. This function will trigger a call of the
+    /// `didReceiveAvailability` when the information was
+    /// retrieved.
     ///
-    /// - Parameter game: The game for which the purchase
-    ///                   status is required.
-    func requestPurchaseStatus(for game: Game)
+    /// - Parameter game: The game for which the availability
+    ///                   status was requested.
+    func requestAvailability(for game: Game)
 }
 
 /**
@@ -26,13 +30,13 @@ protocol MainMenuWorkerInput: class {
  */
 protocol MainMenuWorkerOutput: class {
 
-    /// The purchase status for a requested game was received from the
+    /// The availability status for a requested game was received from the
     /// `PurchaseManager` and is passed along as payload.
     ///
     /// - Parameters:
     ///   - game: The game that was requested.
-    ///   - purchased: The state of the purchase.
-    func didReceivePurchaseStatus(for game: Game, purchased: Bool)
+    ///   - available: Indicates if the game is playable.
+    func didReceiveAvailability(with result: Result<Game, MainMenuWorkerError>)
 }
 
 /**
@@ -58,10 +62,17 @@ class MainMenuWorker: MainMenuWorkerInput {
         }
     }
 
-    func requestPurchaseStatus(for game: Game) {
-        output.didReceivePurchaseStatus(
-            for: game,
-            purchased: game.isPurchased
-        )
+    func requestAvailability(for game: Game) {
+        if game.isPlayable {
+            output.didReceiveAvailability(
+                with: .success(game)
+            )
+        } else {
+            output.didReceiveAvailability(
+                with: .failure(
+                    .notPurchased(game)
+                )
+            )
+        }
     }
 }

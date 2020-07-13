@@ -5,7 +5,7 @@ struct MainMenuItemViewModel {
     let index: Int
 
     var backgroundColor: UIColor {
-        return menuItem.backgroundColor
+        return menuItem.primaryColor
     }
 
     init(with menuItem: Game, index: Int) {

@@ -70,18 +70,23 @@ extension MainMenuInteractor: MainMenuViewControllerOutput {
 
     func menuItemSelected(with index: Int) {
         guard let game = viewModel.games[safe: index] else {
-            fatalError("The games should be present at this time.")
+            assert(true, "The games should be present at this time.")
+            return
         }
-        worker.requestPurchaseStatus(for: game)
+        worker.requestAvailability(for: game)
     }
 }
 
 extension MainMenuInteractor: MainMenuWorkerOutput {
-    func didReceivePurchaseStatus(for game: Game, purchased: Bool) {
-        if purchased {
+
+    func didReceiveAvailability(with result: Result<Game, MainMenuWorkerError>) {
+        switch result {
+        case .success(let game):
             output.presentLevel(for: game)
-        } else {
-            output.presentPurchase(for: game)
+        case .failure(let error):
+            if case let .notPurchased(game) = error {
+                output.presentPurchase(for: game)
+            }
         }
     }
 }

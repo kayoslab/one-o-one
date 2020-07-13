@@ -83,6 +83,8 @@ extension MainMenuViewController: MainMenuPresenterOutput {
     }
 }
 
+// MARK: - MainMenuItemViewDelegate
+
 extension MainMenuViewController: MainMenuItemViewDelegate {
 
     func didSelectMenuItem(with index: Int) {

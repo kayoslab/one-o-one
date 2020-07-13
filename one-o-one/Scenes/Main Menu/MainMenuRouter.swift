@@ -43,22 +43,24 @@ final class MainMenuRouter {
 
 extension MainMenuRouter: MainMenuRouterProtocol {
     func displayPurchaseMenu(with game: Game) {
-        let purchase = StoryboardScene.PurchaseMenu.initialScene
+        let purchaseMenu = StoryboardScene.PurchaseMenu.initialScene
             .instantiate()
-        purchase.modalPresentationStyle = .overFullScreen
+        purchaseMenu.modalPresentationStyle = .overFullScreen
+        purchaseMenu.requestedGame = game
         viewController?.present(
-            purchase,
+            purchaseMenu,
             animated: true,
             completion: nil
         )
     }
 
     func displayNewGameLevel(game: Game) {
-        let game = StoryboardScene.Game.initialScene
+        let gameLevel = StoryboardScene.Game.initialScene
             .instantiate()
-        game.modalPresentationStyle = .overFullScreen
+        gameLevel.modalPresentationStyle = .overFullScreen
+        gameLevel.requestedGame = game
         viewController?.present(
-            game,
+            gameLevel,
             animated: true,
             completion: nil
         )

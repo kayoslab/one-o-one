@@ -1,5 +1,9 @@
 import UIKit
 
+enum PurchaseWorkerError: Error {
+    case unexpected(Product)
+}
+
 /**
  Data that will be directed towards the `PurchaseMenuWorker` coming 
  from the `PurchaseMenuInteractor`.
@@ -8,6 +12,8 @@ protocol PurchaseMenuWorkerInput: class {
 
     // swiftlint:disable:next implicitly_unwrapped_optional
     var output: PurchaseMenuWorkerOutput! { get set }
+
+    func requestPurchase(for product: Product)
 }
 
 /**
@@ -16,7 +22,7 @@ protocol PurchaseMenuWorkerInput: class {
  from the worker.
  */
 protocol PurchaseMenuWorkerOutput: class {
-
+    func didExecutePurchase(with result: Result<Product, PurchaseWorkerError>)
 }
 
 /**
@@ -42,4 +48,28 @@ class PurchaseMenuWorker: PurchaseMenuWorkerInput {
         }
     }
 
+    func requestPurchase(for product: Product) {
+        guard !product.isPurchased else {
+            output.didExecutePurchase(with: .success(product))
+            return
+        }
+
+        PurchaseService.shared.buy(product: product) { didExecute in
+            if didExecute && product.isPurchased {
+                DispatchQueue.main.async { [weak self] in
+                    self?.output.didExecutePurchase(
+                        with: .success(product)
+                    )
+                }
+            } else {
+                DispatchQueue.main.async { [weak self] in
+                    self?.output.didExecutePurchase(
+                        with: .failure(
+                            .unexpected(product)
+                        )
+                    )
+                }
+            }
+        }
+    }
 }

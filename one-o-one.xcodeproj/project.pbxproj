@@ -166,7 +166,6 @@
 			children = (
 				6065478524B5E33A0050DBD8 /* Store Helper */,
 				6065478324B5E3340050DBD8 /* PurchaseService.swift */,
-				60B1C24D24B8905F0037B804 /* Product.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -281,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				6065475C24B5AB850050DBD8 /* Game.swift */,
+				60B1C24D24B8905F0037B804 /* Product.swift */,
 				60B1C24424B7439A0037B804 /* Purchased.swift */,
 			);
 			path = Menu;
