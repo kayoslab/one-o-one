@@ -55,6 +55,10 @@
 		60B1C24A24B88F940037B804 /* PurchaseMenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B1C24924B88F940037B804 /* PurchaseMenuItemViewModel.swift */; };
 		60B1C24C24B88FB10037B804 /* PurchaseMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B1C24B24B88FB10037B804 /* PurchaseMenuItemView.xib */; };
 		60B1C24E24B8905F0037B804 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B1C24D24B8905F0037B804 /* Product.swift */; };
+		60CCE80C24BC58800072F9D1 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 60CCE80B24BC58800072F9D1 /* swiftgen.yml */; };
+		60CCE80E24BC5C7A0072F9D1 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE80D24BC5C7A0072F9D1 /* CanvasView.swift */; };
+		60CCE81024BC5D300072F9D1 /* UIImage+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE80F24BC5D300072F9D1 /* UIImage+View.swift */; };
+		60CCE81224BC5E7A0072F9D1 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */; };
 		60DEA8B624BC54640079C31F /* MainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEA8B524BC54640079C31F /* MainTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +99,7 @@
 		6065475224B5AA670050DBD8 /* PurchaseMenuConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuConfigurator.swift; sourceTree = "<group>"; };
 		6065475C24B5AB850050DBD8 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		6065476024B5AC1A0050DBD8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6065476424B5AC830050DBD8 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
+		6065476424B5AC830050DBD8 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		6065476B24B5AD400050DBD8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localization/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6065476D24B5ADC50050DBD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		6065477124B5AF5F0050DBD8 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -122,6 +126,10 @@
 		60B1C24924B88F940037B804 /* PurchaseMenuItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseMenuItemViewModel.swift; sourceTree = "<group>"; };
 		60B1C24B24B88FB10037B804 /* PurchaseMenuItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseMenuItemView.xib; sourceTree = "<group>"; };
 		60B1C24D24B8905F0037B804 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		60CCE80B24BC58800072F9D1 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
+		60CCE80D24BC5C7A0072F9D1 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		60CCE80F24BC5D300072F9D1 /* UIImage+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+View.swift"; sourceTree = "<group>"; };
+		60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
 		60DEA8B324BC54640079C31F /* one-o-one-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "one-o-one-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DEA8B524BC54640079C31F /* MainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTests.swift; sourceTree = "<group>"; };
 		60DEA8B724BC54640079C31F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -221,7 +229,8 @@
 				6065471D24B593B60050DBD8 /* Info.plist */,
 				6065476A24B5AD400050DBD8 /* Localizable.strings */,
 				6065473724B5A03F0050DBD8 /* swiftlint.yml */,
-				6065476424B5AC830050DBD8 /* swiftgen.yml */,
+				60CCE80B24BC58800072F9D1 /* swiftgen.yml */,
+				6065476424B5AC830050DBD8 /* .travis.yml */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -231,6 +240,7 @@
 			children = (
 				6065472824B593C80050DBD8 /* UserDefaults.swift */,
 				6065477F24B5B5990050DBD8 /* UIView+nib.swift */,
+				60CCE80F24BC5D300072F9D1 /* UIImage+View.swift */,
 				6065478924B7099C0050DBD8 /* Collection+Safe.swift */,
 			);
 			path = Extensions;
@@ -355,6 +365,8 @@
 		60DEA8AE24BC45BF0079C31F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				60CCE80D24BC5C7A0072F9D1 /* CanvasView.swift */,
+				60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -454,6 +466,7 @@
 				60B1C23C24B73AFD0037B804 /* Game.storyboard in Resources */,
 				6065476124B5AC1B0050DBD8 /* LaunchScreen.storyboard in Resources */,
 				6065475324B5AA670050DBD8 /* PurchaseMenu.storyboard in Resources */,
+				60CCE80C24BC58800072F9D1 /* swiftgen.yml in Resources */,
 				6065476E24B5ADC50050DBD8 /* Assets.xcassets in Resources */,
 				6065474124B5A4370050DBD8 /* MainMenu.storyboard in Resources */,
 				6065477724B5B0670050DBD8 /* MainMenuItemView.xib in Resources */,
@@ -539,6 +552,7 @@
 				6065471024B593B40050DBD8 /* AppDelegate.swift in Sources */,
 				60B1C23E24B73AFD0037B804 /* GameWorker.swift in Sources */,
 				6065478024B5B5990050DBD8 /* UIView+nib.swift in Sources */,
+				60CCE81224BC5E7A0072F9D1 /* CanvasViewModel.swift in Sources */,
 				60B1C23F24B73AFD0037B804 /* GameRouter.swift in Sources */,
 				6065478A24B7099C0050DBD8 /* Collection+Safe.swift in Sources */,
 				6065475524B5AA670050DBD8 /* PurchaseMenuWorker.swift in Sources */,
@@ -563,12 +577,14 @@
 				6065477324B5AF5F0050DBD8 /* Strings.swift in Sources */,
 				6065477924B5B06E0050DBD8 /* MainMenuItemView.swift in Sources */,
 				6065475624B5AA670050DBD8 /* PurchaseMenuRouter.swift in Sources */,
+				60CCE80E24BC5C7A0072F9D1 /* CanvasView.swift in Sources */,
 				6065475424B5AA670050DBD8 /* PurchaseMenuPresenter.swift in Sources */,
 				6065474324B5A4370050DBD8 /* MainMenuWorker.swift in Sources */,
 				6065474724B5A4370050DBD8 /* MainMenuViewModel.swift in Sources */,
 				6065478424B5E3340050DBD8 /* PurchaseService.swift in Sources */,
 				6065475824B5AA670050DBD8 /* PurchaseMenuInteractor.swift in Sources */,
 				6065471224B593B40050DBD8 /* SceneDelegate.swift in Sources */,
+				60CCE81024BC5D300072F9D1 /* UIImage+View.swift in Sources */,
 				60B1C24E24B8905F0037B804 /* Product.swift in Sources */,
 				60B1C24024B73AFD0037B804 /* GameViewController.swift in Sources */,
 				6065473224B595240050DBD8 /* StoreObserver.swift in Sources */,
