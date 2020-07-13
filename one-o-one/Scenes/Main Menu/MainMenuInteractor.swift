@@ -73,6 +73,7 @@ extension MainMenuInteractor: MainMenuViewControllerOutput {
             assert(true, "The games should be present at this time.")
             return
         }
+
         worker.requestAvailability(for: game)
     }
 }
