@@ -19,7 +19,13 @@ struct PurchaseMenuViewModel {
 
     var unsuccessfulPurchase: Product?
 
-    init(with unsuccessfulPurchase: Product? = nil) {
+    var highlightedMenuItems: [Product]
+
+    init(
+        _ unsuccessfulPurchase: Product? = nil,
+        _ highlightedMenuItems: [Product] = []
+    ) {
         self.unsuccessfulPurchase = unsuccessfulPurchase
+        self.highlightedMenuItems = highlightedMenuItems
     }
 }

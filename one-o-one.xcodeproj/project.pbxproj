@@ -306,6 +306,7 @@
 		60B1C23324B73AF30037B804 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				60DEA8AE24BC45BF0079C31F /* Views */,
 				60B1C23424B73AFD0037B804 /* Game.storyboard */,
 				60B1C23824B73AFD0037B804 /* GameViewController.swift */,
 				60B1C23A24B73AFD0037B804 /* GameViewModel.swift */,
@@ -324,6 +325,13 @@
 				60B1C24B24B88FB10037B804 /* PurchaseMenuItemView.xib */,
 				60B1C24724B88F400037B804 /* PurchaseMenuItemView.swift */,
 				60B1C24924B88F940037B804 /* PurchaseMenuItemViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		60DEA8AE24BC45BF0079C31F /* Views */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";

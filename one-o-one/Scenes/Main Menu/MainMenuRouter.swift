@@ -46,7 +46,7 @@ extension MainMenuRouter: MainMenuRouterProtocol {
         let purchaseMenu = StoryboardScene.PurchaseMenu.initialScene
             .instantiate()
         purchaseMenu.modalPresentationStyle = .overFullScreen
-        purchaseMenu.requestedGame = game
+        purchaseMenu.output.inject(requested: game)
         viewController?.present(
             purchaseMenu,
             animated: true,

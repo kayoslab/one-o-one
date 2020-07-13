@@ -58,6 +58,6 @@ extension GameViewController: GamePresenterOutput {
     // MARK: - Display logic
 
     func update(with viewModel: GameViewModel) {
-        // TODO: Update UI
+
     }
 }

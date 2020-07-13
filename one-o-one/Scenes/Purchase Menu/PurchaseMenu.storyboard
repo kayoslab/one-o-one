@@ -110,7 +110,6 @@
                         <viewLayoutGuide key="safeArea" id="6bJ-Ym-HRX"/>
                     </view>
                     <connections>
-                        <outlet property="prominentItemsScrollView" destination="B8z-Q8-SD2" id="1iH-Qj-CxS"/>
                         <outlet property="prominentItemsStackView" destination="0z9-m0-0i2" id="LmK-BX-JsC"/>
                         <outlet property="regularItemsStackView" destination="8AE-7H-vcn" id="hod-a9-mQB"/>
                     </connections>

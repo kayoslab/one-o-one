@@ -5,7 +5,7 @@ protocol PurchaseMenuItemViewDelegate: class {
 }
 
 class PurchaseMenuItemView: UIView {
-    private var product: Product = .fullPackage
+    var product: Product = .fullPackage
 
     weak var delegate: PurchaseMenuItemViewDelegate?
 

@@ -15,6 +15,14 @@ protocol PurchaseMenuInteractorOutput {
     func closePurchaseMenu()
 }
 
+/// An object to hold a relation between `Product` and `PurchaseMenuItemView`
+/// over the course of the existence of a `PurchaseMenuItemViewController`.
+/// This helps to retrieve the view for a product for further manipulation.
+private struct PurchaseMenuItem {
+    let product: Product
+    weak var itemView: PurchaseMenuItemView?
+}
+
 /**
   This is the “mediator” between the `PurchaseMenuWorker` and the `PurchaseMenuPresenter`.
   First, it communicates with the `PurchaseMenuViewController` which passes all
@@ -27,7 +35,13 @@ final class PurchaseMenuInteractor {
 
     private let output: PurchaseMenuInteractorOutput
     private let worker: PurchaseMenuWorkerInput
+
     private var viewModel: PurchaseMenuViewModel
+    /// This property might contain a `Game` in case we have any information on which
+    /// `Game` the user was interested in starting right now.
+    private var requestedGame: Game?
+    /// A list of purchaseable items containing their respective views.
+    private var presentedMenuItems: [PurchaseMenuItem] = []
 
     // MARK: - Initializers
 
@@ -61,6 +75,33 @@ extension PurchaseMenuInteractor: PurchaseMenuViewControllerOutput {
         output.update(with: viewModel)
     }
 
+    func viewAppeared() {
+        guard let requestedGame = self.requestedGame else { return }
+
+        let menuItems = presentedMenuItems
+            .filter { $0.product.included.contains(requestedGame) }
+
+
+        viewModel = .init(
+            nil,
+            menuItems.map { $0.product }
+        )
+
+        output.update(with: viewModel)
+    }
+
+    func inject(requested requestedGame: Game) {
+        self.requestedGame = requestedGame
+    }
+
+    func presentedMenuItem(for product: Product, with itemView: PurchaseMenuItemView) {
+        presentedMenuItems.append(.init(product: product, itemView: itemView))
+    }
+
+    func removedMenuItem(with itemView: PurchaseMenuItemView) {
+        presentedMenuItems.removeAll(where: { $0.itemView == itemView })
+    }
+
     func closeButtonSelected() {
         output.closePurchaseMenu()
     }
@@ -78,7 +119,7 @@ extension PurchaseMenuInteractor: PurchaseMenuWorkerOutput {
             output.update(with: viewModel)
         case .failure(let error):
             if case let .unexpected(product) = error {
-                viewModel = .init(with: product)
+                viewModel = .init(product)
                 output.update(with: viewModel)
             } else {
                 assert(true, "Undefined error")
