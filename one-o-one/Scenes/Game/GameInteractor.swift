@@ -26,6 +26,9 @@ final class GameInteractor {
 
     private let output: GameInteractorOutput
     private let worker: GameWorkerInput
+    /// This property might contain a `Game` in case we have any information on which
+    /// `Game` the user was interested in starting right now.
+    private var requestedGame: Game?
     private var viewModel: GameViewModel
 
     // MARK: - Initializers
@@ -58,6 +61,10 @@ extension GameInteractor: GameViewControllerOutput {
 
     func viewLoaded() {
         output.update(with: viewModel)
+    }
+
+    func inject(requested requestedGame: Game) {
+        self.requestedGame = requestedGame
     }
 
     func closeButtonSelected() {
