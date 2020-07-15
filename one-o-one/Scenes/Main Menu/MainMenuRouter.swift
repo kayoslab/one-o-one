@@ -58,7 +58,7 @@ extension MainMenuRouter: MainMenuRouterProtocol {
         let gameLevel = StoryboardScene.Game.initialScene
             .instantiate()
         gameLevel.modalPresentationStyle = .overFullScreen
-        gameLevel.requestedGame = game
+        gameLevel.output.inject(requested: game)
         viewController?.present(
             gameLevel,
             animated: true,

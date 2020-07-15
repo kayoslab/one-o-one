@@ -1,5 +1,6 @@
 import UIKit
 
+
 class CanvasView: UIView {
 
     private let viewModel: CanvasViewModel = .init()
@@ -12,6 +13,8 @@ class CanvasView: UIView {
     private var fired: Bool {
         return !(timer?.isValid ?? true)
     }
+
+    weak var output: UILabel?
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -70,12 +73,14 @@ class CanvasView: UIView {
             ) else { return }
             ClassificationServive.shared.classify(
                 image: image,
-                classificationCompletion: { result in
+                classificationCompletion: { [weak self] result in
                     switch result {
                     case .success(let classification):
                         print("Classification: \(classification)")
+                        self?.output?.text = classification
                     case .failure(let error):
                         dump(error)
+                        self?.output?.text = "?"
                     }
                 }
             )

@@ -9,6 +9,13 @@ protocol GameViewControllerOutput {
     /// The `GameViewController`'s view finished loading.
     func viewLoaded()
 
+    /// Injects a requested `Game` into the module to know which game
+    /// is relevant for the user.
+    ///
+    /// - Parameter requestedGame: The game, which the user wants
+    ///                            to run.
+    func inject(requested requestedGame: Game)
+
     /// The user's has selected the close button.
     func closeButtonSelected()
 }
@@ -22,11 +29,12 @@ final class GameViewController: UIViewController {
     @IBOutlet private weak var leftCanvas: CanvasView?
     @IBOutlet private weak var rightCanvas: CanvasView?
 
+    // Temporary result labels
+    @IBOutlet private weak var leftResultLabel: UILabel?
+    @IBOutlet private weak var rightResultLabel: UILabel?
+
     // swiftlint:disable:next implicitly_unwrapped_optional
     var output: GameViewControllerOutput!
-    /// This property should contain a `Game` which tells us about the content
-    /// that should be loaded into the module.
-    var requestedGame: Game?
 
     // MARK: - Initializers
 
@@ -61,6 +69,7 @@ extension GameViewController: GamePresenterOutput {
     // MARK: - Display logic
 
     func update(with viewModel: GameViewModel) {
-
+        leftCanvas?.output = leftResultLabel
+        rightCanvas?.output = rightResultLabel
     }
 }

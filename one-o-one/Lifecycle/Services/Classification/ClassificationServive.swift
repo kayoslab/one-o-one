@@ -12,10 +12,17 @@ class ClassificationServive {
     private var requests: [VNRequest] = []
     private var classificationCompletion: ((Result<String, Error>) -> Void)?
 
+#if DEBUG
+    private var savedImage: UIImage?
+#endif
+
     private init() {
         // load MNIST model for the use with the Vision framework.
-        guard let visionModel = try? VNCoreMLModel(for: MNISTClassifier().model) else {
-            fatalError("can not load Vision ML model")
+        let visionModel: VNCoreMLModel
+        do {
+            visionModel = try VNCoreMLModel(for: MNIST().model)
+        } catch {
+            fatalError("can not load Vision ML model \(error)")
         }
 
         // Create a classification request and tell it to call
@@ -49,13 +56,17 @@ class ClassificationServive {
             let scaledImage = scaleImage(
                 image: image,
                 toSize: CGSize(
-                    width: 28,
-                    height: 28
+                    width: 300,
+                    height: 300
                 )
             ),
             let noirImage = noir(image: scaledImage),
-            let cgImage = noirImage.cgImage
+            let cgImage = image.cgImage
         else { return }
+
+        #if DEBUG
+            self.savedImage = noirImage
+        #endif
 
         // create a handler that should perform the vision request
         let imageRequestHandler = VNImageRequestHandler(
@@ -90,14 +101,21 @@ class ClassificationServive {
         let classification = results
             .compactMap { $0 as? VNClassificationObservation }
             .sorted { $0.confidence > $1.confidence }
+            .filter { $0.confidence > 0.5 }
             .map { $0.identifier }
             .first
 
         DispatchQueue.main.async { [weak self] in
             if let classification = classification {
+                #if DEBUG
+                    self?.saveImage(classification: "\(classification)")
+                #endif
                 self?.classificationCompletion?(.success(classification))
                 self?.classificationCompletion = nil
             } else {
+                #if DEBUG
+                    self?.saveImage(classification: "unknown")
+                #endif
                 self?.classificationCompletion?(.failure(ClassificationServiceError.noResults))
                 self?.classificationCompletion = nil
             }
@@ -136,4 +154,32 @@ class ClassificationServive {
         }
         return nil
     }
+
+#if DEBUG
+    private func saveImage(classification: String) {
+        guard
+            let data = savedImage?.jpegData(compressionQuality: 1) ?? savedImage?.pngData()
+        else {
+            return
+        }
+
+        guard let directory = try? FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: false
+        ) as NSURL else {
+            return
+        }
+
+        guard
+            let path = directory.appendingPathComponent(
+                "\(savedImage?.hashValue ?? 0) - \(classification).jpg"
+            )
+        else { return }
+
+        try? data.write(to: path)
+        self.savedImage = nil
+    }
+#endif
 }

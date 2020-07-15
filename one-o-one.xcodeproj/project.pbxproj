@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6048F82124BF468100666855 /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6048F82024BF468100666855 /* MNIST.mlmodel */; };
 		6065471024B593B40050DBD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065470F24B593B40050DBD8 /* AppDelegate.swift */; };
 		6065471224B593B40050DBD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065471124B593B40050DBD8 /* SceneDelegate.swift */; };
 		6065472B24B593C80050DBD8 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065472824B593C80050DBD8 /* UserDefaults.swift */; };
@@ -61,7 +62,6 @@
 		60CCE81224BC5E7A0072F9D1 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */; };
 		60CCE81424BC610C0072F9D1 /* CanvasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60CCE81324BC610C0072F9D1 /* CanvasView.xib */; };
 		60CCE81724BC91BE0072F9D1 /* ClassificationServive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE81624BC91BE0072F9D1 /* ClassificationServive.swift */; };
-		60CCE81924BC927A0072F9D1 /* MNISTClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 60CCE81824BC927A0072F9D1 /* MNISTClassifier.mlmodel */; };
 		60DEA8B624BC54640079C31F /* MainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DEA8B524BC54640079C31F /* MainTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6048F82024BF468100666855 /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
 		6065470C24B593B40050DBD8 /* one-o-one.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "one-o-one.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6065470F24B593B40050DBD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6065471124B593B40050DBD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,7 +136,6 @@
 		60CCE81124BC5E7A0072F9D1 /* CanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
 		60CCE81324BC610C0072F9D1 /* CanvasView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CanvasView.xib; sourceTree = "<group>"; };
 		60CCE81624BC91BE0072F9D1 /* ClassificationServive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationServive.swift; sourceTree = "<group>"; };
-		60CCE81824BC927A0072F9D1 /* MNISTClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNISTClassifier.mlmodel; sourceTree = "<group>"; };
 		60DEA8B324BC54640079C31F /* one-o-one-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "one-o-one-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DEA8B524BC54640079C31F /* MainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTests.swift; sourceTree = "<group>"; };
 		60DEA8B724BC54640079C31F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		6065472324B593C80050DBD8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				60CCE81524BC91570072F9D1 /* Canvas */,
+				60CCE81524BC91570072F9D1 /* Classification */,
 				6065472424B593C80050DBD8 /* Purchase */,
 			);
 			path = Services;
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				6065477024B5AF5F0050DBD8 /* Generated */,
-				60CCE81824BC927A0072F9D1 /* MNISTClassifier.mlmodel */,
+				6048F82024BF468100666855 /* MNIST.mlmodel */,
 				6065476024B5AC1A0050DBD8 /* LaunchScreen.storyboard */,
 				6065476D24B5ADC50050DBD8 /* Assets.xcassets */,
 				6065471D24B593B60050DBD8 /* Info.plist */,
@@ -370,12 +370,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		60CCE81524BC91570072F9D1 /* Canvas */ = {
+		60CCE81524BC91570072F9D1 /* Classification */ = {
 			isa = PBXGroup;
 			children = (
 				60CCE81624BC91BE0072F9D1 /* ClassificationServive.swift */,
 			);
-			path = Canvas;
+			path = Classification;
 			sourceTree = "<group>";
 		};
 		60DEA8AE24BC45BF0079C31F /* Views */ = {
@@ -573,6 +573,7 @@
 				60CCE81224BC5E7A0072F9D1 /* CanvasViewModel.swift in Sources */,
 				60B1C23F24B73AFD0037B804 /* GameRouter.swift in Sources */,
 				6065478A24B7099C0050DBD8 /* Collection+Safe.swift in Sources */,
+				6048F82124BF468100666855 /* MNIST.mlmodel in Sources */,
 				6065475524B5AA670050DBD8 /* PurchaseMenuWorker.swift in Sources */,
 				6065475724B5AA670050DBD8 /* PurchaseMenuViewController.swift in Sources */,
 				60B1C23D24B73AFD0037B804 /* GamePresenter.swift in Sources */,
@@ -607,7 +608,6 @@
 				60B1C24024B73AFD0037B804 /* GameViewController.swift in Sources */,
 				6065473224B595240050DBD8 /* StoreObserver.swift in Sources */,
 				60CCE81724BC91BE0072F9D1 /* ClassificationServive.swift in Sources */,
-				60CCE81924BC927A0072F9D1 /* MNISTClassifier.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,7 +759,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: Simon Krüger (ZHJYL9DGF3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T2MU43SWN2;
 				INFOPLIST_FILE = "one-o-one/Info.plist";
@@ -769,7 +769,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.cr0ss.oneoone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "One O One (develop)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.cr0ss.oneoone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -779,7 +779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Simon Krüger (T2MU43SWN2)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T2MU43SWN2;
 				INFOPLIST_FILE = "one-o-one/Info.plist";
@@ -789,7 +789,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.cr0ss.oneoone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "One O One (develop)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.cr0ss.oneoone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
