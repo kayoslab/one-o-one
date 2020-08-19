@@ -236,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				6065477024B5AF5F0050DBD8 /* Generated */,
+				6048F82024BF468100666855 /* MNIST.mlmodel */,
 				6065476024B5AC1A0050DBD8 /* LaunchScreen.storyboard */,
 				6065476D24B5ADC50050DBD8 /* Assets.xcassets */,
 				6065471D24B593B60050DBD8 /* Info.plist */,
@@ -580,6 +581,7 @@
 				60CCE81224BC5E7A0072F9D1 /* CanvasViewModel.swift in Sources */,
 				60B1C23F24B73AFD0037B804 /* GameRouter.swift in Sources */,
 				6065478A24B7099C0050DBD8 /* Collection+Safe.swift in Sources */,
+				6048F82124BF468100666855 /* MNIST.mlmodel in Sources */,
 				6065475524B5AA670050DBD8 /* PurchaseMenuWorker.swift in Sources */,
 				6065475724B5AA670050DBD8 /* PurchaseMenuViewController.swift in Sources */,
 				60B1C23D24B73AFD0037B804 /* GamePresenter.swift in Sources */,
