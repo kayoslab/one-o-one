@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6048F82124BF468100666855 /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6048F82024BF468100666855 /* MNIST.mlmodel */; };
+		603E7A0324C1BFE200A43EF6 /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 603E7A0224C1BFE100A43EF6 /* MNIST.mlmodel */; };
+		604FB84C24ECF937002841BB /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 604FB84B24ECF937002841BB /* LICENSE.md */; };
 		6065471024B593B40050DBD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065470F24B593B40050DBD8 /* AppDelegate.swift */; };
 		6065471224B593B40050DBD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065471124B593B40050DBD8 /* SceneDelegate.swift */; };
 		6065472B24B593C80050DBD8 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065472824B593C80050DBD8 /* UserDefaults.swift */; };
@@ -76,7 +77,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6048F82024BF468100666855 /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
+		603E7A0224C1BFE100A43EF6 /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
+		604FB84A24ECF3B9002841BB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		604FB84B24ECF937002841BB /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		6065470C24B593B40050DBD8 /* one-o-one.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "one-o-one.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6065470F24B593B40050DBD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6065471124B593B40050DBD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 		6065470324B593B40050DBD8 = {
 			isa = PBXGroup;
 			children = (
+				604FB84A24ECF3B9002841BB /* README.md */,
+				604FB84B24ECF937002841BB /* LICENSE.md */,
 				6065470E24B593B40050DBD8 /* one-o-one */,
 				60DEA8B424BC54640079C31F /* one-o-one-tests */,
 				6065470D24B593B40050DBD8 /* Products */,
@@ -235,6 +240,7 @@
 				6065476024B5AC1A0050DBD8 /* LaunchScreen.storyboard */,
 				6065476D24B5ADC50050DBD8 /* Assets.xcassets */,
 				6065471D24B593B60050DBD8 /* Info.plist */,
+				603E7A0224C1BFE100A43EF6 /* MNIST.mlmodel */,
 				6065476A24B5AD400050DBD8 /* Localizable.strings */,
 				6065473724B5A03F0050DBD8 /* swiftlint.yml */,
 				60CCE80B24BC58800072F9D1 /* swiftgen.yml */,
@@ -480,6 +486,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				604FB84C24ECF937002841BB /* LICENSE.md in Resources */,
 				60B1C23C24B73AFD0037B804 /* Game.storyboard in Resources */,
 				6065476124B5AC1B0050DBD8 /* LaunchScreen.storyboard in Resources */,
 				6065475324B5AA670050DBD8 /* PurchaseMenu.storyboard in Resources */,
@@ -518,7 +525,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nif [ -x \"$(command -v swiftlint)\" ]; then\n    swiftlint autocorrect --config swiftlint.yml\n    swiftlint --config swiftlint.yml\n    echo \"Hello world\"\nelse\n    echo \"An error occured. Swiftlint should be installed.\"\n    exit 1\nfi\n\n";
+			shellScript = "if [ -x \"$(command -v swiftlint)\" ]; then\n    swiftlint autocorrect --config swiftlint.yml\n    swiftlint --config swiftlint.yml\n    echo \"[✅] swiftlint executed successfully.\"\nelse\n    echo \"[❌] An error occured executing swiftlint.\"\n    exit 1\nfi\n\n";
 		};
 		6065473624B59EC30050DBD8 /* Templates */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -536,7 +543,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nset -eo pipefail\nIFS=$'\\n\\t'\n\n# Remove all existing files\nrm -fR ~/Library/Developer/Xcode/Templates/File\\ Templates/VIP\\ Template\n\n# Create directory\nmkdir -p ~/Library/Developer/Xcode/Templates/File\\ Templates/\n\n# Copy all included templates to the templates directory\ncp -R ./Templates/VIP\\ Template ~/Library/Developer/Xcode/Templates/File\\ Templates/\n\necho \"Templates copied\"\n";
+			shellScript = "set -eo pipefail\nIFS=$'\\n\\t'\n\n# Remove all existing files\nrm -fR ~/Library/Developer/Xcode/Templates/File\\ Templates/VIP\\ Template\n\n# Create directory\nmkdir -p ~/Library/Developer/Xcode/Templates/File\\ Templates/\n\n# Copy all included templates to the templates directory\ncp -R ./Templates/VIP\\ Template ~/Library/Developer/Xcode/Templates/File\\ Templates/\n\necho \"Templates copied\"\n";
 		};
 		6065476F24B5AE3E0050DBD8 /* Swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -554,7 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nif [ -x \"$(command -v swiftgen)\" ]; then\n    swiftgen config run\nelse\n    echo \"An error occured. Swiftgen should be installed.\"\nfi\n\n";
+			shellScript = "if [ -x \"$(command -v swiftgen)\" ]; then\n    swiftgen config run\n    echo \"[✅] swiftgen executed successfully.\"\nelse\n    echo \"[❌] An error occured executing swiftgen.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -566,6 +573,7 @@
 				60B1C24124B73AFD0037B804 /* GameInteractor.swift in Sources */,
 				6065475924B5AA670050DBD8 /* PurchaseMenuViewModel.swift in Sources */,
 				6065474624B5A4370050DBD8 /* MainMenuInteractor.swift in Sources */,
+				603E7A0324C1BFE200A43EF6 /* MNIST.mlmodel in Sources */,
 				6065474524B5A4370050DBD8 /* MainMenuViewController.swift in Sources */,
 				6065471024B593B40050DBD8 /* AppDelegate.swift in Sources */,
 				60B1C23E24B73AFD0037B804 /* GameWorker.swift in Sources */,

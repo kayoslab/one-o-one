@@ -56,16 +56,17 @@ class ClassificationServive {
             let scaledImage = scaleImage(
                 image: image,
                 toSize: CGSize(
-                    width: 300,
-                    height: 300
+                    width: 28,
+                    height: 28
                 )
             ),
             let noirImage = noir(image: scaledImage),
-            let cgImage = image.cgImage
+            let inverted = inverted(image: noirImage),
+            let cgImage = inverted.cgImage
         else { return }
 
         #if DEBUG
-            self.savedImage = noirImage
+            self.savedImage = inverted
         #endif
 
         // create a handler that should perform the vision request
@@ -153,6 +154,29 @@ class ClassificationServive {
             )
         }
         return nil
+    }
+
+    private func inverted(
+        image: UIImage
+    ) -> UIImage? {
+        guard let cgImage = image.cgImage else { return nil }
+
+        let ciImage = CoreImage.CIImage(cgImage: cgImage)
+        guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
+
+        filter.setDefaults()
+        filter.setValue(ciImage, forKey: kCIInputImageKey)
+        let context = CIContext(options: nil)
+        guard
+            let outputImage = filter.outputImage,
+            let outputImageCopy = context.createCGImage(outputImage, from: outputImage.extent)
+        else { return nil }
+
+        return UIImage(
+            cgImage: outputImageCopy,
+            scale: image.scale,
+            orientation: .up
+        )
     }
 
 #if DEBUG
